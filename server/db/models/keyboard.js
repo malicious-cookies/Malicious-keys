@@ -19,6 +19,10 @@ const Keyboard = db.define('keyboard', {
     validate: {
       notEmpty: true
     }
+  },
+  imageURL:{
+    type: Sequelize.STRING,
+    defaultValue: 'https://cdn.techpp.com/wp-content/uploads/2019/12/Mechanical-Keyboard-Buying-Guide-1200x857.jpeg'
   }
 })
 
