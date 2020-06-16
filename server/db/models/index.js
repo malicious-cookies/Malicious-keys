@@ -1,5 +1,6 @@
 const User = require('./user')
 const Keyboard = require('./keyboard')
+const Orders = require('./Orders')
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -16,5 +17,6 @@ const Keyboard = require('./keyboard')
  */
 module.exports = {
   User,
-  Keyboard
+  Keyboard,
+  Orders
 }
