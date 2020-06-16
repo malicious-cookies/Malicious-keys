@@ -64,7 +64,7 @@ const Navbar = ({handleClick, isLoggedIn}) => {
                   onClick={handleClick}
                 >
                   {' '}
-                  LOGOUT{' '}
+                  LOGOUT
                 </Button>
               </>
             ) : (
