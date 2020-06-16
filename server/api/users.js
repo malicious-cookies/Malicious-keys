@@ -2,7 +2,14 @@ const router = require('express').Router()
 const {User} = require('../db/models')
 module.exports = router
 
-//GET: all users
+router.get('/:userId', async (req, res, next) => {
+  try {
+    const user = await User.findByPk(req.param.userId)
+  } catch (error) {
+    next(error)
+  }
+})
+
 router.get('/', async (req, res, next) => {
   try {
     //get all users without password
