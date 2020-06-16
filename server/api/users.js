@@ -2,7 +2,7 @@ const router = require('express').Router()
 const {User} = require('../db/models')
 module.exports = router
 
-
+//create a new user
 router.post('/', async (req, res, next) => {
   try {
     const createUser = await User.create(req.body)
@@ -18,7 +18,19 @@ router.post('/', async (req, res, next) => {
   }
 })
 
+//update user
+router.put('/:userId', async (req, res, next) => {
+  try {
+    const updatedUser = await User.update(req.body)
+    if(updatedUser){
+      res.status(200).json(updatedUser)
+    }
+  } catch (error) {
+    next(error)
+  }
+})
 
+//get one user
 router.get('/:userId', async (req, res, next) => {
   try {
     const user = await User.findByPk(req.param.userId)
@@ -27,7 +39,7 @@ router.get('/:userId', async (req, res, next) => {
   }
 })
 
-
+//get all users
 router.get('/', async (req, res, next) => {
   try {
     //get all users without password
