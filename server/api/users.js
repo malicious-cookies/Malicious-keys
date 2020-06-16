@@ -18,6 +18,7 @@ router.post('/', async (req, res, next) => {
   }
 })
 
+
 router.get('/:userId', async (req, res, next) => {
   try {
     const user = await User.findByPk(req.param.userId)
@@ -26,8 +27,6 @@ router.get('/:userId', async (req, res, next) => {
   }
 })
 
-=======
-//GET: all users
 
 router.get('/', async (req, res, next) => {
   try {
