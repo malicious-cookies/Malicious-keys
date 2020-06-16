@@ -2,6 +2,7 @@ const router = require('express').Router()
 const {Keyboard} = require('../db/models')
 module.exports = router
 
+//get one keyboard
 router.get('/:keyboardId', async (req, res, next) => {
   try {
     const keyboard = await Keyboard.findByPk(req.param.keyboardId)
@@ -11,7 +12,7 @@ router.get('/:keyboardId', async (req, res, next) => {
   }
 })
 
-
+//update keyboard
 router.put('/:keyboardId', async (req, res, next) => {
   try {
     const updatedKeyboard = await Keyboard.update(req.body)
@@ -27,7 +28,7 @@ router.put('/:keyboardId', async (req, res, next) => {
   }
 })
 
-
+//get all keyboards
 router.get('/', async (req, res, next) => {
   try {
     const keyboards = await Keyboard.findAll()
