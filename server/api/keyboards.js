@@ -11,6 +11,7 @@ router.get('/:keyboardId', async (req, res, next) => {
   }
 })
 
+
 router.put('/:keyboardId', async (req, res, next) => {
   try {
     const updatedKeyboard = await Keyboard.update(req.body)
@@ -26,10 +27,12 @@ router.put('/:keyboardId', async (req, res, next) => {
   }
 })
 
+
 router.get('/', async (req, res, next) => {
   try {
     const keyboards = await Keyboard.findAll()
     //keyboards should hold objects of all the keyboards
+
     res.status(200).json(keyboards)
   } catch (error) {
     next(error)
