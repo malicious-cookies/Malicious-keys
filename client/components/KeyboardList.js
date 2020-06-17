@@ -11,6 +11,7 @@ import Container from '@material-ui/core/Container'
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart'
 import Tooltip from '@material-ui/core/Tooltip'
 import {Link} from 'react-router-dom'
+import Divider from '@material-ui/core/Divider'
 
 const useStyles = makeStyles(theme => ({
   cardGrid: {
@@ -29,8 +30,10 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1
   },
   cardActions: {
-    justifyContent: 'space-around',
-    marginBottom: '5px'
+    justifyContent: 'space-around'
+  },
+  price: {
+    alignSelf: 'center'
   }
 }))
 
@@ -49,19 +52,31 @@ export default function KeyboardList(props) {
                 title="Image title"
               />
               <CardContent className={classes.cardContent}>
-                <Typography gutterBottom variant="h5" component="h2">
-                  {keyboard.name}
-                </Typography>
+                <Grid container alignItems="center">
+                  <Typography gutterBottom variant="h6">
+                    {keyboard.name}
+                  </Typography>
+                </Grid>
                 <Typography>{keyboard.description}</Typography>
               </CardContent>
+              <Typography gutterBottom variant="h6" className={classes.price}>
+                Price: ${keyboard.price}
+              </Typography>
+              <Divider />
               <CardActions className={classes.cardActions}>
                 <Link to={`/products/${keyboard.id}`}>
                   <Tooltip title="MORE DETAILS">
-                    <Button variant="contained" size="small" disableElevation>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      size="small"
+                      disableElevation
+                    >
                       View
                     </Button>
                   </Tooltip>
                 </Link>
+                <Divider orientation="vertical" flexItem />
                 <Tooltip title="ADD TO CART">
                   <Button variant="contained" size="small" color="secondary">
                     <AddShoppingCartIcon />
