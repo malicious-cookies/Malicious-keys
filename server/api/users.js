@@ -22,7 +22,7 @@ router.post('/', async (req, res, next) => {
 router.put('/:userId', async (req, res, next) => {
   try {
     const updatedUser = await User.update(req.body)
-    if(updatedUser){
+    if (updatedUser) {
       res.status(200).json(updatedUser)
     }
   } catch (error) {
