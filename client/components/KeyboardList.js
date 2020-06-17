@@ -48,7 +48,7 @@ export default function KeyboardList(props) {
             <Card className={classes.card}>
               <CardMedia
                 className={classes.cardMedia}
-                image="https://source.unsplash.com/random"
+                image={keyboard.imageURL}
                 title="Image title"
               />
               <CardContent className={classes.cardContent}>

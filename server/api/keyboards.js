@@ -5,7 +5,7 @@ module.exports = router
 //get one keyboard
 router.get('/:keyboardId', async (req, res, next) => {
   try {
-    const keyboard = await Keyboard.findByPk(req.param.keyboardId)
+    const keyboard = await Keyboard.findByPk(req.params.keyboardId)
     res.status(200).json(keyboard)
   } catch (error) {
     next(error)
@@ -19,7 +19,7 @@ router.put('/:keyboardId', async (req, res, next) => {
     if (updatedKeyboard) {
       res.status(200).json(updatedKeyboard)
     } else {
-      const error = new Error('Failed to PUT /api/robots/:keyboardId')
+      const error = new Error('Failed to PUT /api/key/:keyboardId')
       error.status = 500
       throw error
     }
