@@ -5,10 +5,14 @@ import {Link} from 'react-router-dom'
 import {logout} from '../store'
 
 import AppBar from '@material-ui/core/AppBar'
+import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
+import Tabs from '@material-ui/core/Tabs'
+import Tab from '@material-ui/core/Tab'
 import Toolbar from '@material-ui/core/Toolbar'
 import useScrollTrigger from '@material-ui/core/useScrollTrigger'
 import {makeStyles} from '@material-ui/styles'
+// import logo from '../../public/assets/logo.png'
 
 import Badge from '@material-ui/core/Badge'
 import {withStyles} from '@material-ui/core/styles'
@@ -32,7 +36,19 @@ function ElevationScroll(props) {
 
 const useStyles = makeStyles(theme => ({
   toolbarMargin: {
-    ...theme.mixins.toolbar
+    ...theme.mixins.toolbar,
+    marginBottom: '3em'
+  },
+  logo: {
+    height: '4em'
+  },
+  tabContainer: {
+    marginLeft: 'auto'
+  },
+  tab: {
+    fontWeight: 100,
+    minWidth: 10,
+    marginLeft: '25px'
   }
 }))
 
@@ -49,31 +65,44 @@ const Navbar = ({handleClick, isLoggedIn}, props) => {
   const classes = useStyles()
 
   return (
-    <ElevationScroll>
-      <AppBar position="fixed">
-        <Toolbar>
-          <img alt="company logo" src="../../public/assets/littleDog.jpg" />
-          <IconButton aria-label="cart">
-            <StyledBadge
-              badgeContent={4}
-              style={{background: 'transparent', boxShadow: 'none'}}
-            >
-              <ShoppingCartIcon />
-            </StyledBadge>
-          </IconButton>
-          <IconButton>
-            <AccountCircleIcon />
-          </IconButton>
-          <Typography variant="subtitle1">
-            <Link to="#" color="primary">
-              About
-            </Link>
-            <Link to="#">Contact</Link>
-            <Link to="#">Keyboards</Link>
-          </Typography>
-        </Toolbar>
-      </AppBar>
-    </ElevationScroll>
+    <React.Fragment>
+      <ElevationScroll>
+        <AppBar position="fixed">
+          <Toolbar disableGutters>
+            <img alt="company logo" className={classes.logo} src="" />
+            <Tabs className={classes.tabContainer}>
+              <Tab className={classes.tab} label="Keyboards" />
+              <Tab className={classes.tab} label="About" />
+              <Tab className={classes.tab} label="Contact" />
+            </Tabs>
+
+            <Button variant="contained" color="secondary">
+              Sign-Up
+            </Button>
+
+            <IconButton>
+              <Link to="/login">
+                <AccountCircleIcon />
+              </Link>
+            </IconButton>
+
+            <IconButton aria-label="cart">
+              <StyledBadge
+                badgeContent={4}
+                style={{
+                  background: 'transparent',
+                  boxShadow: 'none',
+                  marginRight: '10px'
+                }}
+              >
+                <ShoppingCartIcon />
+              </StyledBadge>
+            </IconButton>
+          </Toolbar>
+        </AppBar>
+      </ElevationScroll>
+      <div className={classes.toolbarMargin} />
+    </React.Fragment>
   )
 }
 
