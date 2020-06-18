@@ -5,8 +5,6 @@ import {Link} from 'react-router-dom'
 import {logout} from '../store'
 
 import AppBar from '@material-ui/core/AppBar'
-import Button from '@material-ui/core/Button'
-import Typography from '@material-ui/core/Typography'
 import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
 import Toolbar from '@material-ui/core/Toolbar'
@@ -18,8 +16,6 @@ import Badge from '@material-ui/core/Badge'
 import {withStyles} from '@material-ui/core/styles'
 import IconButton from '@material-ui/core/IconButton'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'
-
-import AccountCircleIcon from '@material-ui/icons/AccountCircle'
 
 function ElevationScroll(props) {
   const {children} = props
@@ -61,9 +57,17 @@ const StyledBadge = withStyles(theme => ({
   }
 }))(Badge)
 
-const Navbar = ({handleClick, isLoggedIn}, props) => {
+const Navbar = props => {
   const classes = useStyles()
-
+  let inCart =
+    props.cart.length &&
+    props.cart.reduce((a, b) => {
+      if (typeof b === 'object') {
+        return a + b.quantity
+      }
+      return a + b
+    }, 0)
+  console.log(props.cart)
   return (
     <React.Fragment>
       <ElevationScroll>
@@ -71,33 +75,24 @@ const Navbar = ({handleClick, isLoggedIn}, props) => {
           <Toolbar disableGutters>
             <img alt="company logo" className={classes.logo} src="" />
             <Tabs className={classes.tabContainer}>
-              <Tab className={classes.tab} label="Keyboards" />
-              <Tab className={classes.tab} label="About" />
-              <Tab className={classes.tab} label="Contact" />
+              <Link to="/products">
+                <Tab className={classes.tab} label="Keyboards" />
+              </Link>
+              <Link to="/signup">
+                <Tab className={classes.tab} label="Signup" />
+              </Link>
+              <Link to="/login">
+                <Tab className={classes.tab} label="Login" />
+              </Link>
             </Tabs>
 
-            <Button variant="contained" color="secondary">
-              Sign-Up
-            </Button>
-
-            <IconButton>
-              <Link to="/login">
-                <AccountCircleIcon />
-              </Link>
-            </IconButton>
-
-            <IconButton aria-label="cart">
-              <StyledBadge
-                badgeContent={4}
-                style={{
-                  background: 'transparent',
-                  boxShadow: 'none',
-                  marginRight: '10px'
-                }}
-              >
-                <ShoppingCartIcon />
-              </StyledBadge>
-            </IconButton>
+            <Link to="/cart">
+              <IconButton aria-label="cart">
+                <StyledBadge badgeContent={inCart} color="secondary">
+                  <ShoppingCartIcon />
+                </StyledBadge>
+              </IconButton>
+            </Link>
           </Toolbar>
         </AppBar>
       </ElevationScroll>
@@ -111,7 +106,9 @@ const Navbar = ({handleClick, isLoggedIn}, props) => {
 //  */
 const mapState = state => {
   return {
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    user: state.user,
+    cart: state.cart
   }
 }
 
