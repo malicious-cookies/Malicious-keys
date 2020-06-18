@@ -10,6 +10,7 @@ import Tab from '@material-ui/core/Tab'
 import Toolbar from '@material-ui/core/Toolbar'
 import useScrollTrigger from '@material-ui/core/useScrollTrigger'
 import {makeStyles} from '@material-ui/styles'
+// import logo from '../../public/assets/logo.png'
 
 import Badge from '@material-ui/core/Badge'
 import {withStyles} from '@material-ui/core/styles'
@@ -75,6 +76,25 @@ const Navbar = ({handleClick, isLoggedIn}, props) => {
             <IconButton aria-label="cart">
               <StyledBadge
                 badgeContent={inCart}
+            <Tabs className={classes.tabContainer}>
+              <Tab className={classes.tab} label="Keyboards" />
+              <Tab className={classes.tab} label="About" />
+              <Tab className={classes.tab} label="Contact" />
+            </Tabs>
+
+            <Button variant="contained" color="secondary">
+              Sign-Up
+            </Button>
+
+            <IconButton>
+              <Link to="/login">
+                <AccountCircleIcon />
+              </Link>
+            </IconButton>
+
+            <IconButton aria-label="cart">
+              <StyledBadge
+                badgeContent={4}
                 style={{
                   background: 'transparent',
                   boxShadow: 'none',
