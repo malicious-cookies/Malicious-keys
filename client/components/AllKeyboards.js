@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {fetchKeyboards} from '../store/keyboards'
 import KeyboardList from './KeyboardList'
+import {getCart, addToCart} from '../store'
 
 class AllKeyboards extends React.Component {
   constructor(props) {
@@ -13,7 +14,7 @@ class AllKeyboards extends React.Component {
   render() {
     let keyboards = this.props.keyboards
     return keyboards.length ? (
-      <KeyboardList keyboards={this.props.keyboards} />
+      <KeyboardList props={this.props} />
     ) : (
       <p>No keyboards avaliable</p>
     )
@@ -22,13 +23,16 @@ class AllKeyboards extends React.Component {
 
 const mapState = state => {
   return {
-    keyboards: state.keyboards.allKeyboards
+    keyboards: state.keyboards.allKeyboards,
+    cart: state.cart
   }
 }
 
 const mapDispatch = dispatch => {
   return {
-    fetchKeyboards: () => dispatch(fetchKeyboards())
+    fetchKeyboards: () => dispatch(fetchKeyboards()),
+    handleClick: keyboard => dispatch(addToCart(keyboard)),
+    getCart: () => dispatch(getCart())
   }
 }
 
