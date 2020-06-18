@@ -9,6 +9,9 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import Typography from '@material-ui/core/Typography'
 import {makeStyles} from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
+import {signUp} from '../store/user'
+
+import {connect} from 'react-redux'
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -30,8 +33,24 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export default function SignUpForm(props) {
+const SignUpForm = props => {
   const classes = useStyles()
+
+  const handleSubmit = event => {
+    event.preventDefault()
+    const newUserName = event.target.name.value
+    const newEmail = event.target.email.value
+    const newPassword = event.target.password.value
+
+    const newUser = {
+      email: newEmail,
+      password: newPassword,
+      salt: 'salty123',
+      googleId: newUserName
+    }
+
+    props.signUp(newUser)
+  }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -43,7 +62,7 @@ export default function SignUpForm(props) {
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
-        <form className={classes.form} onSubmit={props.handleSubmit} noValidate>
+        <form className={classes.form} onSubmit={handleSubmit} noValidate>
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextField
@@ -97,3 +116,11 @@ export default function SignUpForm(props) {
     </Container>
   )
 }
+
+const mapDispatchToProps = dispatch => {
+  return {
+    signUp: newUser => dispatch(signUp(newUser))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(SignUpForm)
