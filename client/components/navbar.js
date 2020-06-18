@@ -10,7 +10,6 @@ import Tab from '@material-ui/core/Tab'
 import Toolbar from '@material-ui/core/Toolbar'
 import useScrollTrigger from '@material-ui/core/useScrollTrigger'
 import {makeStyles} from '@material-ui/styles'
-// import logo from '../../public/assets/logo.png'
 
 import Badge from '@material-ui/core/Badge'
 import {withStyles} from '@material-ui/core/styles'
