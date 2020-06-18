@@ -54,7 +54,6 @@ const StyledBadge = withStyles(theme => ({
 
 const Navbar = props => {
   const classes = useStyles()
-  let inCart = 0
   let inCart =
     props.cart.length &&
     props.cart.reduce((a, b) => {
@@ -80,22 +79,6 @@ const Navbar = props => {
                 <Tab className={classes.tab} label="LOGIN" />
               </Link>
             </Tabs>
-
-            <IconButton aria-label="cart">
-              <StyledBadge
-                badgeContent={inCart}
-            <Tabs className={classes.tabContainer}>
-              <Link to="/products">
-                <Tab className={classes.tab} label="Keyboards" />
-              </Link>
-              <Link to="/signup">
-                <Tab className={classes.tab} label="Signup" />
-              </Link>
-              <Link to="/login">
-                <Tab className={classes.tab} label="Login" />
-              </Link>
-            </Tabs>
-
             <Link to="/cart">
               <IconButton aria-label="cart">
                 <StyledBadge badgeContent={inCart} color="secondary">
