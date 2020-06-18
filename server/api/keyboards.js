@@ -6,7 +6,11 @@ module.exports = router
 router.get('/:keyboardId', async (req, res, next) => {
   try {
     const keyboard = await Keyboard.findByPk(req.params.keyboardId)
-    res.status(200).json(keyboard)
+    if (keyboard) {
+      res.status(200).json(keyboard)
+    } else {
+      res.sendStatus(404)
+    }
   } catch (error) {
     next(error)
   }
@@ -33,7 +37,11 @@ router.get('/', async (req, res, next) => {
   try {
     const keyboards = await Keyboard.findAll()
     //keyboards should hold objects of all the keyboards
-    res.status(200).json(keyboards)
+    if (keyboards) {
+      res.status(200).json(keyboards)
+    } else {
+      res.sendStatus(404)
+    }
   } catch (error) {
     next(error)
   }
