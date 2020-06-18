@@ -52,9 +52,17 @@ const StyledBadge = withStyles(theme => ({
   }
 }))(Badge)
 
-const Navbar = ({handleClick, isLoggedIn}, props) => {
+const Navbar = props => {
   const classes = useStyles()
   let inCart = 0
+  let inCart =
+    props.cart.length &&
+    props.cart.reduce((a, b) => {
+      if (typeof b === 'object') {
+        return a + b.quantity
+      }
+      return a + b
+    }, 0)
   return (
     <React.Fragment>
       <ElevationScroll>
@@ -77,33 +85,24 @@ const Navbar = ({handleClick, isLoggedIn}, props) => {
               <StyledBadge
                 badgeContent={inCart}
             <Tabs className={classes.tabContainer}>
-              <Tab className={classes.tab} label="Keyboards" />
-              <Tab className={classes.tab} label="About" />
-              <Tab className={classes.tab} label="Contact" />
+              <Link to="/products">
+                <Tab className={classes.tab} label="Keyboards" />
+              </Link>
+              <Link to="/signup">
+                <Tab className={classes.tab} label="Signup" />
+              </Link>
+              <Link to="/login">
+                <Tab className={classes.tab} label="Login" />
+              </Link>
             </Tabs>
 
-            <Button variant="contained" color="secondary">
-              Sign-Up
-            </Button>
-
-            <IconButton>
-              <Link to="/login">
-                <AccountCircleIcon />
-              </Link>
-            </IconButton>
-
-            <IconButton aria-label="cart">
-              <StyledBadge
-                badgeContent={4}
-                style={{
-                  background: 'transparent',
-                  boxShadow: 'none',
-                  marginRight: '10px'
-                }}
-              >
-                <ShoppingCartIcon />
-              </StyledBadge>
-            </IconButton>
+            <Link to="/cart">
+              <IconButton aria-label="cart">
+                <StyledBadge badgeContent={inCart} color="secondary">
+                  <ShoppingCartIcon />
+                </StyledBadge>
+              </IconButton>
+            </Link>
           </Toolbar>
         </AppBar>
       </ElevationScroll>
@@ -117,7 +116,9 @@ const Navbar = ({handleClick, isLoggedIn}, props) => {
 //  */
 const mapState = state => {
   return {
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    user: state.user,
+    cart: state.cart
   }
 }
 
