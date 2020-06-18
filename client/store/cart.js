@@ -46,13 +46,13 @@ export default function(state = currentCart, action) {
         keyboards = state.slice()
         keyboards[searchId].quantity += 1
       } else {
-        keyboards = [
+        keyboards = state.concat([
           {
             id: action.keyboard.id,
             keyboard: action.keyboard,
             quantity: 1
           }
-        ]
+        ])
       }
       localStorage.setItem('cart', JSON.stringify(keyboards))
       return keyboards
@@ -71,7 +71,7 @@ export default function(state = currentCart, action) {
 
     case DELETE_FROM_CART:
       searchId = state.findIndex(el => el.id === action.keyboard.id)
-      if (searchId > -1) {
+      if (searchid > -1) {
         keyboards = state.slice()
         keyboards.splice(searchId, 1)
       }
