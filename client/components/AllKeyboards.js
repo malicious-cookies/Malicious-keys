@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {fetchKeyboards} from '../store/keyboards'
 import KeyboardList from './KeyboardList'
 import {getCart, addToCart} from '../store'
+import CircularProgress from '@material-ui/core/CircularProgress'
 
 class AllKeyboards extends React.Component {
   constructor(props) {
@@ -16,7 +17,7 @@ class AllKeyboards extends React.Component {
     return keyboards.length ? (
       <KeyboardList props={this.props} />
     ) : (
-      <p>No keyboards avaliable</p>
+      <CircularProgress />
     )
   }
 }
