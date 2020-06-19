@@ -97,6 +97,10 @@ const SignUpForm = props => {
                 id="password"
                 autoComplete="current-password"
               />
+              {props.error &&
+                props.error.response && (
+                  <div> {props.error.response.data} </div>
+                )}
             </Grid>
           </Grid>
           <Button
@@ -109,8 +113,6 @@ const SignUpForm = props => {
             Sign Up
           </Button>
           <a href="/auth/google">Signup with Google</a>
-          {props.error &&
-            props.error.response && <div> {props.error.response.data} </div>}
         </form>
       </div>
     </Container>

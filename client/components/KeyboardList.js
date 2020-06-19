@@ -1,5 +1,4 @@
 import React from 'react'
-import {getCart, addToCart} from '../store'
 
 import Button from '@material-ui/core/Button'
 import Card from '@material-ui/core/Card'
@@ -72,7 +71,7 @@ export default function KeyboardList(props) {
               <Divider />
               <CardActions className={classes.cardActions}>
                 <Link to={`/products/${keyboard.id}`}>
-                  <Tooltip title="MORE DETAILS">
+                  <Tooltip title="MORE DETAILS" arrow>
                     <Button
                       variant="contained"
                       color="primary"
@@ -84,7 +83,7 @@ export default function KeyboardList(props) {
                   </Tooltip>
                 </Link>
                 <Divider orientation="vertical" flexItem />
-                <Tooltip title="ADD TO CART">
+                <Tooltip title="ADD TO CART" arrow>
                   <Button
                     variant="contained"
                     size="small"
