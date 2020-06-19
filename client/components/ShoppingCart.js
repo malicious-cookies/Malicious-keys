@@ -138,18 +138,30 @@ const ShoppingCart = props => {
           <TableHead>
             <TableRow className={classes.footer}>
               <Grid container xs={12} justify="flex-end" alignItems="center">
-                <Grid item xs={1}>
-                  <h3>SubTotal:</h3>
-                </Grid>
-                <Grid item xs={2}>
-                  <h3>${total} </h3>
-                </Grid>
-                <Grid item xs={2}>
-                  <Button variant="contained" color="primary">
-                    Checkout
-                    <ReceiptIcon />
-                  </Button>
-                </Grid>
+                {props.cart.length > 0 ? (
+                  <>
+                    <Grid item xs={1}>
+                      <h3>SubTotal:</h3>
+                    </Grid>
+                    <Grid item xs={2}>
+                      <h3>${total} </h3>
+                    </Grid>
+                    <Grid item xs={2}>
+                      <Button variant="contained" color="primary">
+                        Checkout
+                        <ReceiptIcon />
+                      </Button>
+                    </Grid>
+                  </>
+                ) : (
+                  <Grid item xs={12} container justify="center">
+                    <Link to="/products">
+                      <Tooltip title="CHECK KEYBOARDS" arrow>
+                        <h3> CART IS EMPTY</h3>
+                      </Tooltip>
+                    </Link>
+                  </Grid>
+                )}
               </Grid>
             </TableRow>
           </TableHead>
