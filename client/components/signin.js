@@ -1,4 +1,7 @@
 import React from 'react'
+import {connect} from 'react-redux'
+import {auth} from '../store/user'
+
 import Avatar from '@material-ui/core/Avatar'
 import Button from '@material-ui/core/Button'
 import CssBaseline from '@material-ui/core/CssBaseline'
@@ -37,7 +40,12 @@ const Signin = props => {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form} onSubmit={props.handleSubmit} noValidate>
+        <form
+          className={classes.form}
+          onSubmit={props.handleSubmit}
+          name="login"
+          noValidate
+        >
           <TextField
             variant="outlined"
             margin="normal"
@@ -78,4 +86,28 @@ const Signin = props => {
   )
 }
 
-export default Signin
+const mapStateToProps = state => {
+  return {
+    user: state.user.defaultUser
+  }
+}
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  const history = ownProps.history
+  return {
+    handleSubmit(evt) {
+      evt.preventDefault()
+      //hard code
+      const method = 'login'
+      const email = evt.target.email.value
+      const password = evt.target.password.value
+
+      dispatch(auth(email, password, method))
+    }
+    // getUser: user => dispatch(getUser({
+
+    // }))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Signin)
