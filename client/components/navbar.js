@@ -3,53 +3,41 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
-
-import AppBar from '@material-ui/core/AppBar'
-import Tabs from '@material-ui/core/Tabs'
-import Tab from '@material-ui/core/Tab'
-import Toolbar from '@material-ui/core/Toolbar'
-import useScrollTrigger from '@material-ui/core/useScrollTrigger'
-import {makeStyles} from '@material-ui/styles'
-
-import Badge from '@material-ui/core/Badge'
-import {withStyles} from '@material-ui/core/styles'
-import IconButton from '@material-ui/core/IconButton'
+import LockIcon from '@material-ui/icons/Lock'
+import {withStyles, makeStyles} from '@material-ui/core/styles'
+import Typography from '@material-ui/core/Typography'
+import LogoffIcon from '@material-ui/icons/PowerSettingsNew'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'
-
-function ElevationScroll(props) {
-  const {children} = props
-
-  const trigger = useScrollTrigger({
-    disableHysteresis: true,
-    threshold: 0
-  })
-
-  return React.cloneElement(children, {
-    elevation: trigger ? 4 : 0
-  })
-}
-
-const useStyles = makeStyles(theme => ({
-  toolbarMargin: {
-    ...theme.mixins.toolbar,
-    marginBottom: '3em'
-  },
-  logo: {
-    height: '4em'
-  },
-  tabContainer: {
-    marginLeft: 'auto'
-  }
-}))
+import AddCircleIcon from '@material-ui/icons/AddCircle'
+import ProductsIcon from '@material-ui/icons/Dehaze'
+import Button from '@material-ui/core/Button'
+import IconButton from '@material-ui/core/IconButton'
+import Badge from '@material-ui/core/Badge'
+import AppBar from '@material-ui/core/AppBar'
+import Toolbar from '@material-ui/core/Toolbar'
+import AccountCircleIcon from '@material-ui/icons/AccountCircle'
 
 const StyledBadge = withStyles(theme => ({
   badge: {
     right: -3,
     top: 13,
-    border: `2px solid ${theme.palette.background.paper}`,
+    border: `2px solid ${theme.palette.background.r}`,
     padding: '0 4px'
   }
 }))(Badge)
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    flexGrow: 1,
+    marginBottom: '100px'
+  },
+  menuButton: {
+    marginRight: theme.spacing(2)
+  },
+  title: {
+    flexGrow: 1
+  }
+}))
 
 const Navbar = props => {
   const classes = useStyles()
@@ -61,35 +49,51 @@ const Navbar = props => {
       }
       return a + b
     }, 0)
+
   return (
-    <React.Fragment>
-      <ElevationScroll>
-        <AppBar position="fixed">
-          <Toolbar disableGutters>
-            <img alt="company logo" className={classes.logo} src="" />
-            <Tabs className={classes.tabContainer} indicatorColor="primary">
-              <Link to="/products">
-                <Tab className={classes.tab} centered label="Keyboards" />
+    <div className={classes.root}>
+      <AppBar>
+        <Toolbar>
+          <Typography variant="h6" className={classes.title}>
+            Malicious Keys
+          </Typography>
+          <Link to="/products">
+            <Button startIcon={<ProductsIcon />}> PRODUCTS </Button>
+          </Link>
+          {props.isLoggedIn ? (
+            <React.Fragment>
+              <Link to="/account">
+                <Button startIcon={<AccountCircleIcon />}> ACCOUNT </Button>
               </Link>
+              <Button
+                color="secondary"
+                startIcon={<LogoffIcon />}
+                onClick={props.handleClick}
+              >
+                {' '}
+                LOGOUT{' '}
+              </Button>
+            </React.Fragment>
+          ) : (
+            <React.Fragment>
               <Link to="/signup">
-                <Tab className={classes.tab} label="SIGN-UP" />
+                <Button startIcon={<AddCircleIcon />}> SIGNUP </Button>
               </Link>
               <Link to="/login">
-                <Tab className={classes.tab} label="LOGIN" />
+                <Button startIcon={<LockIcon />}> lOGIN </Button>
               </Link>
-            </Tabs>
-            <Link to="/cart">
-              <IconButton aria-label="cart">
-                <StyledBadge badgeContent={inCart} color="secondary">
-                  <ShoppingCartIcon />
-                </StyledBadge>
-              </IconButton>
-            </Link>
-          </Toolbar>
-        </AppBar>
-      </ElevationScroll>
-      <div className={classes.toolbarMargin} />
-    </React.Fragment>
+            </React.Fragment>
+          )}
+          <Link to="/cart">
+            <IconButton aria-label="cart">
+              <StyledBadge badgeContent={inCart} color="primary">
+                <ShoppingCartIcon />
+              </StyledBadge>
+            </IconButton>
+          </Link>
+        </Toolbar>
+      </AppBar>
+    </div>
   )
 }
 
@@ -106,9 +110,7 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    handleClick() {
-      dispatch(logout())
-    }
+    handleClick: () => handleClick(dispatch(logout()))
   }
 }
 Navbar.propTypes = {

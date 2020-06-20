@@ -1,21 +1,25 @@
 import {createMuiTheme} from '@material-ui/core/styles'
+import {common} from '@material-ui/core/colors'
 
-const creme = '#fff4e6'
-const lipstick = '#854442'
-const lightBrown = '#be9b7b'
-const chocolate = '#4b3832'
+let oceanGreen = `#58b4ae`
+let dangerRed = `#f40552`
+let lightYellow = '#ffe277'
 
 export default createMuiTheme({
   palette: {
     common: {
-      creme: `${creme}`,
-      lipstick: `${lipstick}`
+      oceanGreen: `${oceanGreen}`,
+      dangerRed: `${dangerRed}`,
+      lightYellow: `${lightYellow}`
     },
     primary: {
-      main: `${creme}`
+      main: `${oceanGreen}`
     },
     secondary: {
-      main: `${chocolate}`
+      main: `${dangerRed}`
+    },
+    sunny: {
+      main: `${lightYellow}`
     }
   },
   typography: {
