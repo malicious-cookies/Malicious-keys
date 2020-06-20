@@ -67,11 +67,11 @@ const Navbar = props => {
               </Link>
               <Button
                 color="secondary"
+                variant="outlined"
                 startIcon={<LogoffIcon />}
                 onClick={props.logout}
               >
-                {' '}
-                LOGOUT{' '}
+                Logout
               </Button>
             </React.Fragment>
           ) : (
@@ -86,7 +86,7 @@ const Navbar = props => {
           )}
           <Link to="/cart">
             <IconButton aria-label="cart">
-              <StyledBadge badgeContent={inCart} color="primary">
+              <StyledBadge badgeContent={inCart} color="secondary">
                 <ShoppingCartIcon />
               </StyledBadge>
             </IconButton>
