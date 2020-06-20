@@ -42,7 +42,7 @@ const ShoppingCart = props => {
   let total = 0
   return (
     <Container>
-      <Grid container xs={12} justify="center" alignItems="center">
+      <Grid container item xs={12} justify="center" alignItems="center">
         <ShoppingCartRoundedIcon fontSize="large" />
         <h1> My Shopping Cart</h1>
       </Grid>
@@ -137,32 +137,40 @@ const ShoppingCart = props => {
         <Table>
           <TableHead>
             <TableRow className={classes.footer}>
-              <Grid container xs={12} justify="flex-end" alignItems="center">
-                {props.cart.length > 0 ? (
-                  <>
-                    <Grid item xs={1}>
-                      <h3>SubTotal:</h3>
+              <TableCell>
+                <Grid
+                  container
+                  item
+                  xs={12}
+                  justify="flex-end"
+                  alignItems="center"
+                >
+                  {props.cart.length > 0 ? (
+                    <>
+                      <Grid item xs={1}>
+                        <h3>SubTotal:</h3>
+                      </Grid>
+                      <Grid item xs={2}>
+                        <h3>${total} </h3>
+                      </Grid>
+                      <Grid item xs={2}>
+                        <Button variant="contained" color="primary">
+                          Checkout
+                          <ReceiptIcon />
+                        </Button>
+                      </Grid>
+                    </>
+                  ) : (
+                    <Grid item xs={12} container justify="center">
+                      <Link to="/products">
+                        <Tooltip title="CHECK KEYBOARDS" arrow>
+                          <h3> CART IS EMPTY</h3>
+                        </Tooltip>
+                      </Link>
                     </Grid>
-                    <Grid item xs={2}>
-                      <h3>${total} </h3>
-                    </Grid>
-                    <Grid item xs={2}>
-                      <Button variant="contained" color="primary">
-                        Checkout
-                        <ReceiptIcon />
-                      </Button>
-                    </Grid>
-                  </>
-                ) : (
-                  <Grid item xs={12} container justify="center">
-                    <Link to="/products">
-                      <Tooltip title="CHECK KEYBOARDS" arrow>
-                        <h3> CART IS EMPTY</h3>
-                      </Tooltip>
-                    </Link>
-                  </Grid>
-                )}
-              </Grid>
+                  )}
+                </Grid>
+              </TableCell>
             </TableRow>
           </TableHead>
         </Table>

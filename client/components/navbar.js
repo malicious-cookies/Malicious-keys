@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {logout} from '../store'
+import {logout} from '../store/user'
 import LockIcon from '@material-ui/icons/Lock'
 import {withStyles, makeStyles} from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
@@ -68,7 +68,7 @@ const Navbar = props => {
               <Button
                 color="secondary"
                 startIcon={<LogoffIcon />}
-                onClick={props.handleClick}
+                onClick={props.logout}
               >
                 {' '}
                 LOGOUT{' '}
@@ -110,11 +110,11 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    handleClick: () => handleClick(dispatch(logout()))
+    logout: () => dispatch(logout())
   }
 }
 Navbar.propTypes = {
-  handleClick: PropTypes.func.isRequired,
+  logout: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool.isRequired
 }
 

@@ -3,28 +3,28 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Redirect} from 'react-router-dom'
 import AllKeyboards from './AllKeyboards'
-import Navbar from './navbar'
-import {render} from 'enzyme'
 
 /**
  * COMPONENT
  */
-class UserHome extends React.Component {
+class Account extends React.Component {
   constructor(props) {
     super(props)
   }
 
   render() {
     let user = this.props.user
-
     if (!user.id) {
       return <Redirect to="/" />
     }
 
     return (
       <div>
-        <h3>Welcome</h3>
-        <AllKeyboards />
+        <h3>Welcome {user.email}</h3>
+        <h3>
+          This component will render past orders. Setting pages and Personal
+          info page.
+        </h3>
       </div>
     )
   }
@@ -34,18 +34,17 @@ class UserHome extends React.Component {
  * CONTAINER
  */
 const mapState = state => {
-  console.log('STATE.User ======', state.user)
   return {
     user: state.user,
     email: state.user.email
   }
 }
 
-export default connect(mapState)(UserHome)
+export default connect(mapState)(Account)
 
 /**
  * PROP TYPES
  */
-UserHome.propTypes = {
+Account.propTypes = {
   email: PropTypes.string
 }
