@@ -7,7 +7,8 @@ const Orders = db.define('orders', {
     allowNull: false
   },
   status: {
-    type: Sequelize.STRING
+    type: Sequelize.ENUM,
+    values: ['processing', 'completed', 'open']
   },
   items: {
     type: Sequelize.ARRAY(Sequelize.JSON),

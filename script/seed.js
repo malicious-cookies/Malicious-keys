@@ -87,7 +87,7 @@ const seedOrders = [
   },
   {
     RecipientName: 'hunter@cuny.edu',
-    status: 'completed',
+    status: 'open',
     items: [
       {
         name:
