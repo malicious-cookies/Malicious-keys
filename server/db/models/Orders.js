@@ -10,7 +10,7 @@ const Orders = db.define('orders', {
     type: Sequelize.STRING
   },
   items: {
-    type: Sequelize.ARRAY(Sequelize.STRING),
+    type: Sequelize.ARRAY(Sequelize.JSON),
     defaultValue: []
   },
   subtotal: {

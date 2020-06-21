@@ -43,11 +43,108 @@
 // // we export the seed function for testing purposes (see `./seed.spec.js`)
 // module.exports = seed
 const db = require('../server/db')
-const {User, Keyboard} = require('../server/db/models')
+const {User, Keyboard, Orders} = require('../server/db/models')
+
+const seedOrders = [
+  {
+    RecipientName: 'doggo@gmail.com',
+    status: 'processing',
+    items: [
+      {
+        name: 'logitech',
+        quantity: 100,
+        price: 80,
+        description: `Vortex's newest 75% keyboard, the 83-key Race 3! Do you need dedicated arrow keys that your 60% doesn't provide, but don't want the size of a TKL? A 75% may be just for you! Most of the keys are in the "normal" spot, so there's nearly no learning curve for this keyboard.`,
+        imageURL:
+          'https://mechanicalkeyboards.com/shop/images/products/large_VTG83MSLV_main.jpg'
+      }
+    ],
+    subtotal: 80
+  },
+  {
+    RecipientName: 'pizza@gmail.com',
+    status: 'completed',
+    items: [
+      {
+        name:
+          'Tt eSPORTS Challenger Illuminated Gaming Keyboard, Black (KB-CHL002USB)',
+        quantity: 10,
+        price: 110,
+        description: `Comprehensive 104 gaming keys layout, each key is featured with backlight design to enhance gaming atmosphere
+      On-board 32kb memory for 6 macro keys in 3 game profiles, the Illuminated edition
+      The Illuminated edition is rubber-coated textured, creates greater key-press control over your game`,
+        imageURL: `https://images-na.ssl-images-amazon.com/images/I/81vLwoIQqIL._AC_SL1500_.jpg`
+      },
+      {
+        name: 'Ducky One Pink / White Dye Sub PBT Mechanical Keyboard',
+        quantity: 100,
+        price: 110,
+        description: `A cute qwerty keyboard`,
+        imageURL: `https://mechanicalkeyboards.com/shop/images/products/large_DKON1608-USPHZWB4_main.jpg`
+      }
+    ],
+    subtotal: 220
+  },
+  {
+    RecipientName: 'hunter@cuny.edu',
+    status: 'completed',
+    items: [
+      {
+        name:
+          'Punk Mechanical Keyboard, Gaming Esport Keyboard, Wired USB Keyboard 108 Keys for Desktop Computer and Laptop Multimedia Office,Linearaction',
+        quantity: 3,
+        price: 109,
+        description: `Can be realistic 22 kinds of illusion light effect one-key switch, with the knob can adjust the light effect brightness, M1\M2\M3 button preset game keypad lights and can be customized.
+                  Equipped with a magnetic hand rest that can be quickly mounted to the front of the keyboard, the surface is durable and comfortable with a matte finish, while a number of non-slip feet are placed on the back.
+                  The mechanical shaft is the core of the mechanical keyboard. The tarantula strives to make the materials rigorous, long-term compression, and the loss of resilience is minimal, the real game mechanical shaft!
+                  Adopt anti-ghost full-key no-rush design, no matter how fast the action in the game, press at the same time, respond to the trigger at the same time, refuse the key position conflict, feel the pleasure brought by the game!
+                  104-key macro programming can be customized, the game is more fun and the performance is stronger.`,
+        imageURL:
+          'https://images-na.ssl-images-amazon.com/images/I/61nnfNhNYpL._AC_SL1000_.jpg'
+      },
+      {
+        name:
+          'Corsair K70 RGB MK.2 SE Mechanical RAPIDFIRE Gaming Keyboard - USB Passthrough & Media Controls - PBT Double-Shot Keycaps - Cherry MX Speed - RGB LED Backlit (CH-9109114-NA)',
+        quantity: 1,
+        price: 165,
+        description: `Get the RAPIDFIRE advantage CHERRY MX Speed mechanical key switches provide the reliability and accuracy you demand, with blistering fast 1.2mm actuation
+                    Aircraft grade silver anodized brushed aluminum frame, built to withstand a lifetime of gaming
+                    White PBT double shot keycaps for superior durability, look and feel
+                    8MB profile storage with hardware macro and lighting playback allow access to up to three stored profiles on the go, independent of external software
+                    Per key dynamic multi color RGB backlighting offers near unlimited color customization and control. HID keyboard report rate 1000Hz
+                    CORSAIR iCUE software enables vivid dynamic lighting control, sophisticated macro programming and full system lighting synchronization across compatible CORSAIR peripherals, coolers, fans and more`,
+        imageURL: `https://images-na.ssl-images-amazon.com/images/I/71TmErpb3bL._AC_SL1500_.jpg`
+      }
+    ],
+    subtotal: 300
+  },
+  {
+    RecipientName: 'pizza@gmail.com',
+    status: 'processing',
+    items: [
+      {
+        name: 'logitech',
+        quantity: 100,
+        price: 80,
+        description: `Vortex's newest 75% keyboard, the 83-key Race 3! Do you need dedicated arrow keys that your 60% doesn't provide, but don't want the size of a TKL? A 75% may be just for you! Most of the keys are in the "normal" spot, so there's nearly no learning curve for this keyboard.`,
+        imageURL:
+          'https://mechanicalkeyboards.com/shop/images/products/large_VTG83MSLV_main.jpg'
+      },
+      {
+        name: 'Ducky One 2 RGB TKL RGB LED Double Shot PBT Mechanical Keyboard',
+        quantity: 125,
+        price: 120,
+        description: `Includes either Year of the Pig or 1 of 2 Year of the Rat spacebars`,
+        imageURL: `https://mechanicalkeyboards.com/shop/images/products/large_4284_large_DKON1787ST-USPDAZT1_main.jpg`
+      }
+    ],
+    subtotal: 200
+  }
+]
 
 const seedUser = [
   {
-    email: 'doggo@gmail',
+    email: 'doggo@gmail.com',
     password: 'abc123',
     salt: 'ab246',
     googleId: 'googleString123'
@@ -204,6 +301,7 @@ const seed = async () => {
     await db.sync({force: true})
     await User.bulkCreate(seedUser, {validate: true})
     await Keyboard.bulkCreate(seedKeyboard, {validate: true})
+    await Orders.bulkCreate(seedOrders, {validate: true})
   } catch (error) {
     console.log('SOMETHING WENT WRONG WITH THE SEEDING: ', error)
   }
