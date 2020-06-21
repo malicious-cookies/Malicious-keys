@@ -6,10 +6,6 @@ const Keyboard = db.define('keyboard', {
     type: Sequelize.STRING,
     allownull: false
   },
-  quantity: {
-    type: Sequelize.INTEGER,
-    defaultValue: 10
-  },
   price: {
     type: Sequelize.FLOAT,
     defaultValue: 100
@@ -20,9 +16,10 @@ const Keyboard = db.define('keyboard', {
       notEmpty: true
     }
   },
-  imageURL:{
+  imageURL: {
     type: Sequelize.STRING,
-    defaultValue: 'https://cdn.techpp.com/wp-content/uploads/2019/12/Mechanical-Keyboard-Buying-Guide-1200x857.jpeg'
+    defaultValue:
+      'https://cdn.techpp.com/wp-content/uploads/2019/12/Mechanical-Keyboard-Buying-Guide-1200x857.jpeg'
   }
 })
 

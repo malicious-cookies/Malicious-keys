@@ -43,26 +43,26 @@
 // // we export the seed function for testing purposes (see `./seed.spec.js`)
 // module.exports = seed
 const db = require('../server/db')
-const {User, Keyboard, Orders} = require('../server/db/models')
+const {User, Keyboard, Order} = require('../server/db/models')
 
 const seedOrders = [
   {
-    RecipientName: 'doggo@gmail.com',
+    RecipientName: 'Dog guy',
+    RecipientEmail: 'doggo@gmail.com',
     status: 'processing',
     items: [
       {
         name: 'logitech',
-        quantity: 100,
         price: 80,
         description: `Vortex's newest 75% keyboard, the 83-key Race 3! Do you need dedicated arrow keys that your 60% doesn't provide, but don't want the size of a TKL? A 75% may be just for you! Most of the keys are in the "normal" spot, so there's nearly no learning curve for this keyboard.`,
         imageURL:
           'https://mechanicalkeyboards.com/shop/images/products/large_VTG83MSLV_main.jpg'
       }
-    ],
-    subtotal: 80
+    ]
   },
   {
-    RecipientName: 'pizza@gmail.com',
+    RecipientName: 'Pizza guy',
+    RecipientEmail: 'pizza@gmail.com',
     status: 'completed',
     items: [
       {
@@ -77,22 +77,20 @@ const seedOrders = [
       },
       {
         name: 'Ducky One Pink / White Dye Sub PBT Mechanical Keyboard',
-        quantity: 100,
         price: 110,
         description: `A cute qwerty keyboard`,
         imageURL: `https://mechanicalkeyboards.com/shop/images/products/large_DKON1608-USPHZWB4_main.jpg`
       }
-    ],
-    subtotal: 220
+    ]
   },
   {
-    RecipientName: 'hunter@cuny.edu',
+    RecipientName: 'Hunter guy',
+    RecipientEmail: 'hunter@cuny.edu',
     status: 'open',
     items: [
       {
         name:
           'Punk Mechanical Keyboard, Gaming Esport Keyboard, Wired USB Keyboard 108 Keys for Desktop Computer and Laptop Multimedia Office,Linearaction',
-        quantity: 3,
         price: 109,
         description: `Can be realistic 22 kinds of illusion light effect one-key switch, with the knob can adjust the light effect brightness, M1\M2\M3 button preset game keypad lights and can be customized.
                   Equipped with a magnetic hand rest that can be quickly mounted to the front of the keyboard, the surface is durable and comfortable with a matte finish, while a number of non-slip feet are placed on the back.
@@ -105,7 +103,6 @@ const seedOrders = [
       {
         name:
           'Corsair K70 RGB MK.2 SE Mechanical RAPIDFIRE Gaming Keyboard - USB Passthrough & Media Controls - PBT Double-Shot Keycaps - Cherry MX Speed - RGB LED Backlit (CH-9109114-NA)',
-        quantity: 1,
         price: 165,
         description: `Get the RAPIDFIRE advantage CHERRY MX Speed mechanical key switches provide the reliability and accuracy you demand, with blistering fast 1.2mm actuation
                     Aircraft grade silver anodized brushed aluminum frame, built to withstand a lifetime of gaming
@@ -115,16 +112,15 @@ const seedOrders = [
                     CORSAIR iCUE software enables vivid dynamic lighting control, sophisticated macro programming and full system lighting synchronization across compatible CORSAIR peripherals, coolers, fans and more`,
         imageURL: `https://images-na.ssl-images-amazon.com/images/I/71TmErpb3bL._AC_SL1500_.jpg`
       }
-    ],
-    subtotal: 300
+    ]
   },
   {
-    RecipientName: 'pizza@gmail.com',
+    RecipientName: 'Pizza guy',
+    RecipientEmail: 'pizza@gmail.com',
     status: 'processing',
     items: [
       {
         name: 'logitech',
-        quantity: 100,
         price: 80,
         description: `Vortex's newest 75% keyboard, the 83-key Race 3! Do you need dedicated arrow keys that your 60% doesn't provide, but don't want the size of a TKL? A 75% may be just for you! Most of the keys are in the "normal" spot, so there's nearly no learning curve for this keyboard.`,
         imageURL:
@@ -132,31 +128,35 @@ const seedOrders = [
       },
       {
         name: 'Ducky One 2 RGB TKL RGB LED Double Shot PBT Mechanical Keyboard',
-        quantity: 125,
         price: 120,
         description: `Includes either Year of the Pig or 1 of 2 Year of the Rat spacebars`,
         imageURL: `https://mechanicalkeyboards.com/shop/images/products/large_4284_large_DKON1787ST-USPDAZT1_main.jpg`
       }
-    ],
-    subtotal: 200
+    ]
   }
 ]
 
 const seedUser = [
   {
+    name: 'Dog guy',
     email: 'doggo@gmail.com',
+    address: '224 kimball ave, Yorkers, New York 10456',
     password: 'abc123',
     salt: 'ab246',
     googleId: 'googleString123'
   },
   {
+    name: 'Pizza guy',
     email: 'pizza@gmail.com',
+    address: '234 kill ave, bronx, New York 10256',
     password: 'pepperon14lyfe',
     salt: '9876',
     googleId: 'gzsee3'
   },
   {
+    name: 'Hunter guy',
     email: 'hunter@cuny.edu',
+    address: '1 some street, Long Island, New York 10056',
     password: 'college',
     salt: 'googlyeyes',
     googleId: 'greatest'
@@ -166,7 +166,6 @@ const seedUser = [
 const seedKeyboard = [
   {
     name: 'logitech',
-    quantity: 100,
     price: 80,
     description: `Vortex's newest 75% keyboard, the 83-key Race 3! Do you need dedicated arrow keys that your 60% doesn't provide, but don't want the size of a TKL? A 75% may be just for you! Most of the keys are in the "normal" spot, so there's nearly no learning curve for this keyboard.`,
     imageURL:
@@ -174,14 +173,12 @@ const seedKeyboard = [
   },
   {
     name: 'Ducky One 2 RGB TKL RGB LED Double Shot PBT Mechanical Keyboard',
-    quantity: 125,
     price: 120,
     description: `Includes either Year of the Pig or 1 of 2 Year of the Rat spacebars`,
     imageURL: `https://mechanicalkeyboards.com/shop/images/products/large_4284_large_DKON1787ST-USPDAZT1_main.jpg`
   },
   {
     name: 'Ducky One Pink / White Dye Sub PBT Mechanical Keyboard',
-    quantity: 100,
     price: 110,
     description: `A cute qwerty keyboard`,
     imageURL: `https://mechanicalkeyboards.com/shop/images/products/large_DKON1608-USPHZWB4_main.jpg`
@@ -189,7 +186,6 @@ const seedKeyboard = [
   {
     name:
       'Tt eSPORTS Challenger Illuminated Gaming Keyboard, Black (KB-CHL002USB)',
-    quantity: 10,
     price: 110,
     description: `Comprehensive 104 gaming keys layout, each key is featured with backlight design to enhance gaming atmosphere
                   On-board 32kb memory for 6 macro keys in 3 game profiles, the Illuminated edition
@@ -199,7 +195,6 @@ const seedKeyboard = [
   {
     name:
       'Razer BlackWidow Ultimate: Esports Gaming Keyboard - Dust and Spill Resistant - Individually Backlit Keys - Razer Green Mechanical Switches (Tactile and Clicky)',
-    quantity: 12,
     price: 90,
     description: `The Razer BlackWidow Ultimate is resistant to both water and dust, tested to withstand IP54 conditions
                 Individually programmable backlit keys along with dynamic lighting effects, all set easily through Razer Synapse
@@ -210,7 +205,6 @@ const seedKeyboard = [
   {
     name:
       'VAKABOX 35 Key One-Handed USB Wired Mechnical Keyboard with 3 Cool Dazzling Backlit for Esport Gamer PUBG, FPS, LOL',
-    quantity: 10,
     price: 70,
     description: `35 Key one-hand USB wired mechnical keyboard can achieve most of your game requiements
                  3 Cool dazzling lihgting effect backlihgt for enhance your gaming experience
@@ -222,7 +216,6 @@ const seedKeyboard = [
   {
     name:
       'Logitech K400 Plus Wireless Touch TV Keyboard with Easy Media Control and Built-In Touchpad',
-    quantity: 10,
     price: 80,
     description: `Wireless TV keyboard with touchpad: Enjoy effortless control of your TV connected computer
                   Compact and slim: Perfect for the living room
@@ -236,7 +229,6 @@ const seedKeyboard = [
   {
     name:
       'B975 Optical Switch Gaming Keyboard by Bloody Gaming | Fastest Keyboard Switches in Gaming | Full Size | RGB LED Backlit Keyboard | Smooth & Linear Key Feedback | Detachable Wrist-Rest Design',
-    quantity: 5,
     price: 120,
     description: `LIGHTNING FAST: Optic Switch technology gives you a true competitive edge with optical detection for keys that react at light speed. The continuous optical beam delivers zero-latency, with a 0.2ms response time versus the 30ms of mechanical. Each key is full NKRO and engineered with a calculated shallow stroke. This ensures each keypress can register simultaneously regardless of how many keys are pressed at a time, while also increasing active return rate and decreasing finger fatigue.
                   BATTLE TESTED DURABILITY: The LK Libra is manufactured with weapons-grade anodized aluminum, providing a lightweight frame that is smudge- and fingerprint-resistant. This keyboard has been engineered to withstand over 100 million keystrokes per switch, with a stabilizing bar that reinforces every key for tighter control and a premium, uniform key feel. With features that resist oxidation, water damage, spills, and intense gaming, you and your gear will be able to outlast the competition!
@@ -248,7 +240,6 @@ const seedKeyboard = [
   {
     name:
       'Fosmon Mini Bluetooth Keyboard (QWERTY Keypad), Wireless Portable Lightweight with built-in Touchpad, works with Apple TV, PS4, Smartphones and more',
-    quantity: 3,
     price: 50,
     description: `[COMPACT & PORTABLE QWERTY KEYBOARD WITH TOUCHPAD] Innovative and compact QWERTY keyboard with touchpad that provides comfort combined with the freedom of wireless connectivity. Connect to all of your favorite devices with this wireless keyboard.
                   [BLUETOOTH 3.0] With a working range of approx. 33ft/10m, easily connect and control Bluetooth devices with this wireless keyboard.
@@ -260,7 +251,6 @@ const seedKeyboard = [
   {
     name:
       'Corsair K70 RGB MK.2 SE Mechanical RAPIDFIRE Gaming Keyboard - USB Passthrough & Media Controls - PBT Double-Shot Keycaps - Cherry MX Speed - RGB LED Backlit (CH-9109114-NA)',
-    quantity: 1,
     price: 165,
     description: `Get the RAPIDFIRE advantage CHERRY MX Speed mechanical key switches provide the reliability and accuracy you demand, with blistering fast 1.2mm actuation
                   Aircraft grade silver anodized brushed aluminum frame, built to withstand a lifetime of gaming
@@ -273,7 +263,6 @@ const seedKeyboard = [
   {
     name:
       'Apple Magic Keyboard with Numeric Keypad (Wireless, Rechargable) (US English) - Silver',
-    quantity: 7,
     price: 130,
     description: `Magic Keyboard with Numeric Keypad features an extended layout, with document navigation controls for quick scrolling and full-size arrow keys for gaming
                   A scissor mechanism beneath each key allows for increased stability, while optimized key travel and a low profile provide a comfortable and precise typing experience.
@@ -284,7 +273,6 @@ const seedKeyboard = [
   {
     name:
       'Punk Mechanical Keyboard, Gaming Esport Keyboard, Wired USB Keyboard 108 Keys for Desktop Computer and Laptop Multimedia Office,Linearaction',
-    quantity: 3,
     price: 109,
     description: `Can be realistic 22 kinds of illusion light effect one-key switch, with the knob can adjust the light effect brightness, M1\M2\M3 button preset game keypad lights and can be customized.
                 Equipped with a magnetic hand rest that can be quickly mounted to the front of the keyboard, the surface is durable and comfortable with a matte finish, while a number of non-slip feet are placed on the back.
@@ -301,7 +289,7 @@ const seed = async () => {
     await db.sync({force: true})
     await User.bulkCreate(seedUser, {validate: true})
     await Keyboard.bulkCreate(seedKeyboard, {validate: true})
-    await Orders.bulkCreate(seedOrders, {validate: true})
+    await Order.bulkCreate(seedOrders, {validate: true})
   } catch (error) {
     console.log('SOMETHING WENT WRONG WITH THE SEEDING: ', error)
   }
