@@ -852,6 +852,7 @@ var SignUpForm = function SignUpForm(props) {
     var newEmail = event.target.email.value;
     var newPassword = event.target.password.value;
     var newUser = {
+      name: newUserName,
       email: newEmail,
       password: newPassword,
       salt: 'salty123',

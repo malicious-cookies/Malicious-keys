@@ -141,6 +141,7 @@ const seedUser = [
     name: 'Dog guy',
     email: 'doggo@gmail.com',
     address: '224 kimball ave, Yorkers, New York 10456',
+    isAdmin: true,
     password: 'abc123',
     salt: 'ab246',
     googleId: 'googleString123'

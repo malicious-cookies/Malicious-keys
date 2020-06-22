@@ -43,6 +43,7 @@ const SignUpForm = props => {
     const newPassword = event.target.password.value
 
     const newUser = {
+      name: newUserName,
       email: newEmail,
       password: newPassword,
       salt: 'salty123',
