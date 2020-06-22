@@ -2,8 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Redirect} from 'react-router-dom'
-import AllKeyboards from './AllKeyboards'
-
+import OrderList from './OrderList'
+import orderList from './OrderList'
 /**
  * COMPONENT
  */
@@ -20,11 +20,7 @@ class Account extends React.Component {
 
     return (
       <div>
-        <h3>Welcome {user.email}</h3>
-        <h3>
-          This component will render past orders. Setting pages and Personal
-          info page.
-        </h3>
+        <orderList orders={this.props} />
       </div>
     )
   }
