@@ -58,7 +58,8 @@ const seedOrders = [
         imageURL:
           'https://mechanicalkeyboards.com/shop/images/products/large_VTG83MSLV_main.jpg'
       }
-    ]
+    ],
+    userId: 3
   },
   {
     RecipientName: 'Pizza guy',
@@ -81,7 +82,8 @@ const seedOrders = [
         description: `A cute qwerty keyboard`,
         imageURL: `https://mechanicalkeyboards.com/shop/images/products/large_DKON1608-USPHZWB4_main.jpg`
       }
-    ]
+    ],
+    userId: 2
   },
   {
     RecipientName: 'Hunter guy',
@@ -112,7 +114,8 @@ const seedOrders = [
                     CORSAIR iCUE software enables vivid dynamic lighting control, sophisticated macro programming and full system lighting synchronization across compatible CORSAIR peripherals, coolers, fans and more`,
         imageURL: `https://images-na.ssl-images-amazon.com/images/I/71TmErpb3bL._AC_SL1500_.jpg`
       }
-    ]
+    ],
+    userId: 2
   },
   {
     RecipientName: 'Pizza guy',
@@ -132,7 +135,8 @@ const seedOrders = [
         description: `Includes either Year of the Pig or 1 of 2 Year of the Rat spacebars`,
         imageURL: `https://mechanicalkeyboards.com/shop/images/products/large_4284_large_DKON1787ST-USPDAZT1_main.jpg`
       }
-    ]
+    ],
+    userId: 1
   }
 ]
 
