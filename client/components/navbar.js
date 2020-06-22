@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
@@ -43,6 +43,8 @@ const useStyles = makeStyles(theme => ({
 
 const Navbar = props => {
   const classes = useStyles()
+  const [value, setValue] = useState[0]
+
   let inCart =
     props.cart.length &&
     props.cart.reduce((a, b) => {
@@ -62,6 +64,7 @@ const Navbar = props => {
           <Link to="/products">
             <Button startIcon={<ProductsIcon />}> PRODUCTS </Button>
           </Link>
+
           {props.isLoggedIn ? (
             <React.Fragment>
               <Link to="/account">
