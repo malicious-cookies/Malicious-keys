@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store/user'
+import logo from '../../public/assets/logo.png'
+
 import LockIcon from '@material-ui/icons/Lock'
 import {withStyles, makeStyles} from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
@@ -55,7 +57,7 @@ const Navbar = props => {
       <AppBar>
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
-            Malicious Keys
+            <img src={logo} height="100px" width="150px" />
           </Typography>
           <Link to="/products">
             <Button startIcon={<ProductsIcon />}> PRODUCTS </Button>
