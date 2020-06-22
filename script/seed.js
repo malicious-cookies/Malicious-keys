@@ -92,7 +92,7 @@ const seedOrders = [
         name:
           'Punk Mechanical Keyboard, Gaming Esport Keyboard, Wired USB Keyboard 108 Keys for Desktop Computer and Laptop Multimedia Office,Linearaction',
         price: 109,
-        description: `Can be realistic 22 kinds of illusion light effect one-key switch, with the knob can adjust the light effect brightness, M1\M2\M3 button preset game keypad lights and can be customized.
+        description: `Can be realistic 22 kinds of illusion light effect one-key switch, with the knob can adjust the light effect brightness, M1  M2 M3 button preset game keypad lights and can be customized.
                   Equipped with a magnetic hand rest that can be quickly mounted to the front of the keyboard, the surface is durable and comfortable with a matte finish, while a number of non-slip feet are placed on the back.
                   The mechanical shaft is the core of the mechanical keyboard. The tarantula strives to make the materials rigorous, long-term compression, and the loss of resilience is minimal, the real game mechanical shaft!
                   Adopt anti-ghost full-key no-rush design, no matter how fast the action in the game, press at the same time, respond to the trigger at the same time, refuse the key position conflict, feel the pleasure brought by the game!
@@ -274,7 +274,7 @@ const seedKeyboard = [
     name:
       'Punk Mechanical Keyboard, Gaming Esport Keyboard, Wired USB Keyboard 108 Keys for Desktop Computer and Laptop Multimedia Office,Linearaction',
     price: 109,
-    description: `Can be realistic 22 kinds of illusion light effect one-key switch, with the knob can adjust the light effect brightness, M1\M2\M3 button preset game keypad lights and can be customized.
+    description: `Can be realistic 22 kinds of illusion light effect one-key switch, with the knob can adjust the light effect brightness, M1 M2 M3 button preset game keypad lights and can be customized.
                 Equipped with a magnetic hand rest that can be quickly mounted to the front of the keyboard, the surface is durable and comfortable with a matte finish, while a number of non-slip feet are placed on the back.
                 The mechanical shaft is the core of the mechanical keyboard. The tarantula strives to make the materials rigorous, long-term compression, and the loss of resilience is minimal, the real game mechanical shaft!
                 Adopt anti-ghost full-key no-rush design, no matter how fast the action in the game, press at the same time, respond to the trigger at the same time, refuse the key position conflict, feel the pleasure brought by the game!
