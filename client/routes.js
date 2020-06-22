@@ -8,7 +8,8 @@ import {
   Signup,
   Account,
   AllKeyboards,
-  SingleKeyboard
+  SingleKeyboard,
+  SplashPage
 } from './components'
 import {me} from './store'
 
@@ -39,7 +40,7 @@ class Routes extends Component {
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
-        <Route component={AllKeyboards} />
+        <Route component={SplashPage} />
       </Switch>
     )
   }

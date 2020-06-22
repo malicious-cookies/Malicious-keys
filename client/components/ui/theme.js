@@ -20,6 +20,9 @@ export default createMuiTheme({
     },
     sunny: {
       main: `${lightYellow}`
+    },
+    background: {
+      default: '#ffffff'
     }
   },
   typography: {

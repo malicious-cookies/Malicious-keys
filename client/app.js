@@ -5,6 +5,7 @@ import Routes from './routes'
 
 import {ThemeProvider} from '@material-ui/core/styles'
 import theme from './components/ui/theme'
+import SplashPage from './components/SplashPage'
 
 const App = () => {
   return (

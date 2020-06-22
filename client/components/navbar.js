@@ -38,6 +38,9 @@ const useStyles = makeStyles(theme => ({
   },
   title: {
     flexGrow: 1
+  },
+  design: {
+    background: 'transparent'
   }
 }))
 
@@ -55,7 +58,7 @@ const Navbar = props => {
 
   return (
     <div className={classes.root}>
-      <AppBar>
+      <AppBar className={classes.design}>
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
             <img src={logo} height="100px" width="150px" />
