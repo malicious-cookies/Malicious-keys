@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const {Keyboard} = require('../db/models')
+const {isAdmin} = require('./gatekeepers')
 module.exports = router
 
 //get one keyboard
@@ -17,7 +18,7 @@ router.get('/:keyboardId', async (req, res, next) => {
 })
 
 //update keyboard
-router.put('/:keyboardId', async (req, res, next) => {
+router.put('/:keyboardId', isAdmin, async (req, res, next) => {
   try {
     const updatedKeyboard = await Keyboard.update(req.body)
     if (updatedKeyboard) {
@@ -26,6 +27,20 @@ router.put('/:keyboardId', async (req, res, next) => {
       const error = new Error('Failed to PUT /api/key/:keyboardId')
       error.status = 500
       throw error
+    }
+  } catch (error) {
+    next(error)
+  }
+})
+
+//Create keyboard
+router.post('/:keyboardId', isAdmin, async (req, res, next) => {
+  try {
+    const newKeyboard = await Keyboard.create(req.body)
+    if (newKeyboard) {
+      res.sendStatus(200)
+    } else {
+      res.sendStatus(404)
     }
   } catch (error) {
     next(error)

@@ -58,7 +58,8 @@ const seedOrders = [
         imageURL:
           'https://mechanicalkeyboards.com/shop/images/products/large_VTG83MSLV_main.jpg'
       }
-    ]
+    ],
+    userId: 3
   },
   {
     RecipientName: 'Pizza guy',
@@ -81,7 +82,8 @@ const seedOrders = [
         description: `A cute qwerty keyboard`,
         imageURL: `https://mechanicalkeyboards.com/shop/images/products/large_DKON1608-USPHZWB4_main.jpg`
       }
-    ]
+    ],
+    userId: 2
   },
   {
     RecipientName: 'Hunter guy',
@@ -92,7 +94,7 @@ const seedOrders = [
         name:
           'Punk Mechanical Keyboard, Gaming Esport Keyboard, Wired USB Keyboard 108 Keys for Desktop Computer and Laptop Multimedia Office,Linearaction',
         price: 109,
-        description: `Can be realistic 22 kinds of illusion light effect one-key switch, with the knob can adjust the light effect brightness, M1\M2\M3 button preset game keypad lights and can be customized.
+        description: `Can be realistic 22 kinds of illusion light effect one-key switch, with the knob can adjust the light effect brightness, M1  M2 M3 button preset game keypad lights and can be customized.
                   Equipped with a magnetic hand rest that can be quickly mounted to the front of the keyboard, the surface is durable and comfortable with a matte finish, while a number of non-slip feet are placed on the back.
                   The mechanical shaft is the core of the mechanical keyboard. The tarantula strives to make the materials rigorous, long-term compression, and the loss of resilience is minimal, the real game mechanical shaft!
                   Adopt anti-ghost full-key no-rush design, no matter how fast the action in the game, press at the same time, respond to the trigger at the same time, refuse the key position conflict, feel the pleasure brought by the game!
@@ -112,7 +114,8 @@ const seedOrders = [
                     CORSAIR iCUE software enables vivid dynamic lighting control, sophisticated macro programming and full system lighting synchronization across compatible CORSAIR peripherals, coolers, fans and more`,
         imageURL: `https://images-na.ssl-images-amazon.com/images/I/71TmErpb3bL._AC_SL1500_.jpg`
       }
-    ]
+    ],
+    userId: 2
   },
   {
     RecipientName: 'Pizza guy',
@@ -132,7 +135,8 @@ const seedOrders = [
         description: `Includes either Year of the Pig or 1 of 2 Year of the Rat spacebars`,
         imageURL: `https://mechanicalkeyboards.com/shop/images/products/large_4284_large_DKON1787ST-USPDAZT1_main.jpg`
       }
-    ]
+    ],
+    userId: 1
   }
 ]
 
@@ -141,6 +145,7 @@ const seedUser = [
     name: 'Dog guy',
     email: 'doggo@gmail.com',
     address: '224 kimball ave, Yorkers, New York 10456',
+    isAdmin: true,
     password: 'abc123',
     salt: 'ab246',
     googleId: 'googleString123'
@@ -274,7 +279,7 @@ const seedKeyboard = [
     name:
       'Punk Mechanical Keyboard, Gaming Esport Keyboard, Wired USB Keyboard 108 Keys for Desktop Computer and Laptop Multimedia Office,Linearaction',
     price: 109,
-    description: `Can be realistic 22 kinds of illusion light effect one-key switch, with the knob can adjust the light effect brightness, M1\M2\M3 button preset game keypad lights and can be customized.
+    description: `Can be realistic 22 kinds of illusion light effect one-key switch, with the knob can adjust the light effect brightness, M1 M2 M3 button preset game keypad lights and can be customized.
                 Equipped with a magnetic hand rest that can be quickly mounted to the front of the keyboard, the surface is durable and comfortable with a matte finish, while a number of non-slip feet are placed on the back.
                 The mechanical shaft is the core of the mechanical keyboard. The tarantula strives to make the materials rigorous, long-term compression, and the loss of resilience is minimal, the real game mechanical shaft!
                 Adopt anti-ghost full-key no-rush design, no matter how fast the action in the game, press at the same time, respond to the trigger at the same time, refuse the key position conflict, feel the pleasure brought by the game!
