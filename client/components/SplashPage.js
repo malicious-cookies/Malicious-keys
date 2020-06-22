@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-function SplashPage() {
+const SplashPage = () => {
   const classes = useStyles()
 
   return (

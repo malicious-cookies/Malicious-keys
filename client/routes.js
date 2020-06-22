@@ -3,13 +3,13 @@ import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import ShoppingCart from './components/ShoppingCart'
+import SplashPage from './components/SplashPage'
 import {
   Login,
   Signup,
   Account,
   AllKeyboards,
-  SingleKeyboard,
-  SplashPage
+  SingleKeyboard
 } from './components'
 import {me} from './store'
 
