@@ -1,18 +1,18 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {fetchSingleKeyboard} from '../store/singleKeyboard'
-import KeyboardView from './KeyboardVIew'
+import EditKeyboardForm from './EditKeyboardForm'
 
-class SingleKeyboard extends React.Component {
+class EditKeyboard extends React.Component {
   constructor(props) {
     super(props)
-  }
-  componentDidMount() {
     this.props.fetchSingleKeyboard(this.props.match.params.id)
   }
+
   render() {
-    let keyboard = this.props.keyboard
-    return <KeyboardView keyboard={keyboard} />
+    const keyboard = this.props.keyboard
+
+    return <EditKeyboardForm keyboard={keyboard} keyboardName={keyboard.name} />
   }
 }
 
@@ -27,5 +27,4 @@ const mapDispatch = dispatch => {
     fetchSingleKeyboard: keyboardId => dispatch(fetchSingleKeyboard(keyboardId))
   }
 }
-
-export default connect(mapState, mapDispatch)(SingleKeyboard)
+export default connect(mapState, mapDispatch)(EditKeyboard)

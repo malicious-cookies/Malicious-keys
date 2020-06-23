@@ -40,6 +40,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function KeyboardList(props) {
   const classes = useStyles()
+
   return (
     <Container className={classes.cardGrid} maxWidth="lg">
       <Grid container spacing={4}>
@@ -70,18 +71,52 @@ export default function KeyboardList(props) {
               </Typography>
               <Divider />
               <CardActions className={classes.cardActions}>
-                <Link to={`/products/${keyboard.id}`}>
-                  <Tooltip title="MORE DETAILS" arrow>
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      size="small"
-                      disableElevation
-                    >
-                      View
-                    </Button>
-                  </Tooltip>
-                </Link>
+                {props.isAdmin === true ? (
+                  <div>
+                    <Link to={`/products/${keyboard.id}`}>
+                      <Tooltip title="MORE DETAILS" arrow>
+                        <Button
+                          variant="contained"
+                          color="primary"
+                          size="small"
+                          disableElevation
+                        >
+                          View
+                        </Button>
+                        {/* condition if on admin account */}
+                      </Tooltip>
+                    </Link>
+
+                    <Link to={`/products/${keyboard.id}/edit`}>
+                      <Tooltip title="Edit" arrow>
+                        <Button
+                          variant="contained"
+                          color="primary"
+                          size="small"
+                          disableElevation
+                        >
+                          Edit
+                        </Button>
+                        {/* condition if on admin account */}
+                      </Tooltip>
+                    </Link>
+                  </div>
+                ) : (
+                  <Link to={`/products/${keyboard.id}`}>
+                    <Tooltip title="MORE DETAILS" arrow>
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        size="small"
+                        disableElevation
+                      >
+                        View
+                      </Button>
+                      {/* condition if on admin account */}
+                    </Tooltip>
+                  </Link>
+                )}
+
                 <Divider orientation="vertical" flexItem />
                 <Tooltip title="ADD TO CART" arrow>
                   <Button
