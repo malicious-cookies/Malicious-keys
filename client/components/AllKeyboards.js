@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {fetchKeyboards} from '../store/keyboards'
 import KeyboardList from './KeyboardList'
-import {getCart, addToCart} from '../store'
+import {getCart, addToCart, fetchSingleKeyboard} from '../store'
 import CircularProgress from '@material-ui/core/CircularProgress'
 
 class AllKeyboards extends React.Component {
@@ -11,11 +11,12 @@ class AllKeyboards extends React.Component {
   }
   componentDidMount() {
     this.props.fetchKeyboards()
+    console.log('ALLTHE PROPS===', this.props)
   }
   render() {
     let keyboards = this.props.keyboards
     return keyboards.length ? (
-      <KeyboardList props={this.props} />
+      <KeyboardList props={this.props} isAdmin={this.props.isAdmin} />
     ) : (
       <CircularProgress />
     )
@@ -25,7 +26,8 @@ class AllKeyboards extends React.Component {
 const mapState = state => {
   return {
     keyboards: state.keyboards.allKeyboards,
-    cart: state.cart
+    cart: state.cart,
+    isAdmin: state.user.isAdmin
   }
 }
 
