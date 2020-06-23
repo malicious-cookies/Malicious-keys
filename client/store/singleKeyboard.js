@@ -9,7 +9,6 @@ const EDIT_KEYBOARD = 'EDIT_KEYBOARD'
 
 const REMOVE_SINGLE_KEYBOARD = 'REMOVE_SINGLE_KEYBOARD'
 
-
 /**
  * INITIAL STATE
  */
@@ -27,17 +26,16 @@ const getSingleKeyboard = keyboard => {
   }
 }
 
-
 const editKeyboard = keyboard => {
   return {
     type: EDIT_KEYBOARD,
     keyboard
-
+  }
+}
 const removeSingleKeyboard = keyboardID => {
   return {
     type: REMOVE_SINGLE_KEYBOARD,
     keyboardID
-
   }
 }
 
