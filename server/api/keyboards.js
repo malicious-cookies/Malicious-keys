@@ -17,6 +17,24 @@ router.get('/:keyboardId', async (req, res, next) => {
   }
 })
 
+//delete keyboard
+router.delete('/:keyboardId', async (req, res, next) => {
+  try {
+    const keyboardId = req.params.keyboardId
+    const keyboardToDelete = await Keyboard.findByPk(keyboardId)
+    const deleted = await keyboardToDelete.destroy()
+    if (deleted) {
+      res.sendStatus(204)
+    } else {
+      const error = new Error(
+        'Failed to delete keyboard to DELETE /api/keyboards/:keyboardId'
+      )
+    }
+  } catch (error) {
+    next(error)
+  }
+})
+
 //update keyboard
 router.put('/:keyboardId', isAdmin, async (req, res, next) => {
   try {
