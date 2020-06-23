@@ -1,4 +1,6 @@
-import React from 'react'
+import React, {useState} from 'react'
+import {connect} from 'react-redux'
+import {editOneKeyboard} from '../store/singleKeyboard'
 
 import {makeStyles} from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
@@ -48,12 +50,22 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const EditForm = props => {
-  console.log('PROPS====@#$@#$=', props.keyboardName)
+  const [name, setName] = useState('')
+  const [price, setPrice] = useState('')
+  const [description, setDescription] = useState('')
+  const [imageURL, setImageURL] = useState('')
 
-  console.log(name)
+  const editKeyboard = {
+    name,
+    price,
+    description,
+    imageURL
+  }
+
   const classes = useStyles()
   const keyboardName = props.keyboard.name
-  console.log('KEYBOARD NAME====', keyboardName)
+  console.log(props, 'PPROEOOW')
+
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>
@@ -62,12 +74,16 @@ const EditForm = props => {
           onSubmit={() => console.log('form submitted!')}
         >
           <Grid container spacing={1}>
-            <Grid item md={5} md container>
-              <Typography variant="subtitle1" className={classes.title}>
-                {props.keyboard.name}
-              </Typography>
-              <Grid item sm={2} sm container>
-                <Typography variant="subtitle1">$19.00</Typography>
+            <Grid item md={12} md container>
+              <Grid item md={4}>
+                <Typography variant="subtitle1" className={classes.title}>
+                  {props.keyboard.name}
+                </Typography>
+              </Grid>
+              <Grid item md={2}>
+                <Typography variant="subtitle1">
+                  {props.keyboard.price}
+                </Typography>
               </Grid>
               <Grid item>
                 <img
@@ -84,9 +100,9 @@ const EditForm = props => {
                     required
                     id="outlined-required"
                     label="Update Name"
-                    defaultValue="change"
+                    value={name}
                     variant="outlined"
-                    onChange={() => console.log('TEXT IS CHANGING')}
+                    onChange={e => setName(e.target.value)}
                   />
 
                   <TextField
@@ -94,8 +110,8 @@ const EditForm = props => {
                     label="Update Price"
                     multiline
                     rowsMax={4}
-                    value="change price"
-                    onChange=""
+                    value={price}
+                    onChange={e => setPrice(e.target.value)}
                     variant="outlined"
                   />
 
@@ -104,10 +120,25 @@ const EditForm = props => {
                     label="Update Description"
                     multiline
                     rows={4}
-                    defaultValue="Default Value"
+                    value={description}
+                    defaultValue=""
                     variant="outlined"
+                    onChange={e =>
+                      e
+                        ? setDescription(e.target.value)
+                        : setDescription(defaultValue)
+                    }
                   />
-
+                  <TextField
+                    id="outlined-multiline-static"
+                    label="Update imageURL"
+                    multiline
+                    rows={4}
+                    value={imageURL}
+                    defaultValue=""
+                    variant="outlined"
+                    onChange={e => setImageURL(e.target.value)}
+                  />
                   {/* <Typography gutterBottom variant="subtitle1">
                   Name
                 </Typography> */}
@@ -119,6 +150,9 @@ const EditForm = props => {
                     size="large"
                     className={classes.button}
                     startIcon={<SaveIcon />}
+                    onClick={() =>
+                      props.editKeyboard(props.keyboard.id, editKeyboard)
+                    }
                   >
                     Save
                   </Button>
@@ -142,4 +176,12 @@ const EditForm = props => {
   )
 }
 
-export default EditForm
+const mapDispatch = dispatch => {
+  return {
+    deleteKeyboard: keyboardId => dispatch(keyboardId),
+    editKeyboard: (keyboardId, keyboard) =>
+      dispatch(editOneKeyboard(keyboardId, keyboard))
+  }
+}
+
+export default connect(null, mapDispatch)(EditForm)
