@@ -47,19 +47,6 @@ router.post('/:keyboardId', isAdmin, async (req, res, next) => {
   }
 })
 
-router.delete('/:keyboardId', isAdmin, async (req, res, next) => {
-  try {
-    const newKeyboard = await Keyboard.create(req.body)
-    if (newKeyboard) {
-      res.sendStatus(200)
-    } else {
-      res.sendStatus(404)
-    }
-  } catch (error) {
-    next(error)
-  }
-})
-
 //get all keyboards
 router.get('/', async (req, res, next) => {
   try {

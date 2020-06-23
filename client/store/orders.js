@@ -1,64 +1,41 @@
 import axios from 'axios'
-import {act} from 'react-test-renderer'
+import history from '../history'
 
 /**
  * ACTION TYPES
  */
-const GET_ALL_ORDERS_USER = 'GET_ALL_ORDERS_USER'
-const GET_ALL_ORDERS_ADMIN = 'GET_ALL_ORDERS_ADMIN'
-const GET_SINGLE_ORDER = 'GET_SINGLE_ORDER_USER'
+const GET_USER_ORDERS = 'GET_USER_ORDERS'
+const CREATE_NEW_ORDER = 'CREATE_NEW_ORDER'
 
 /**
  * INITIAL STATE
  */
-const initialState = {
-  orders: [],
-  singleOrder: {}
-}
+const defaultOrders = []
 
 /**
  * ACTION CREATORS
  */
-const getAllOrders = allOrders => {
-  return {
-    type: GET_ALL_ORDERS,
-    allOrders
-  }
-}
-
-const getSingleOrder = singleOrder => {
-  return {
-    type: GET_SINGLE_ORDER_USER,
-    singleOrder
-  }
-}
-
+const getUserOrders = orders => ({type: GET_USER_ORDERS, orders})
+const createNewOrder = order => ({type: CREATE_NEW_ORDER, order})
 /**
  * THUNK CREATORS
  */
 
-export const fetchSingleOrder = (userId, orderId) => async dispatch => {
+export const fetchOrders = userId => async dispatch => {
   try {
-    const res = await axios.get(`/api/users/${userId}/orders/${orderId}`)
-    dispatch(getSingleOrder(res.data))
+    const orders = await axios.get(`/api/users/${userId}/orders`)
+    console.log('elwjeokjqekjqekjqwlekjqwklejqwkljeqwkljeqwjl;', orders)
+
+    dispatch(getUserOrders(orders.data))
   } catch (err) {
     console.error(err)
   }
 }
 
-export const fetchAllOrdersUser = userId => async dispatch => {
+export const makeNewOrder = (userId, order) => async dispatch => {
   try {
-    const res = await axios.get(`/api/users/${userId}/orders`)
-    dispatch(getAllOrders(res.data))
-  } catch (err) {
-    console.error(err)
-  }
-}
-
-export const fetchAllOrdersAdmin = () => async dispatch => {
-  try {
-    const res = await axios.get(`/api/orders`)
-    dispatch(getAllOrder(res.data))
+    let {data} = axios.post(`/api/users/${userId}/orders`, order)
+    dispatch(getAllOrdersUser(data))
   } catch (err) {
     console.error(err)
   }
@@ -67,14 +44,13 @@ export const fetchAllOrdersAdmin = () => async dispatch => {
 /**
  * REDUCER
  */
-export default function OrdersReducer(state = initialState, action) {
+export default function(state = defaultOrders, action) {
   switch (action.type) {
-    case 'GET_All_ORDER':
-      return {...state, orders: action.allOrders}
+    case CREATE_NEW_ORDER:
+      return [...state, action.order]
 
-    case 'GET_SINGLE_ORDER_USER':
-      return {...state, singleOrder: action.singleOrder}
-
+    case GET_USER_ORDERS:
+      return action.orders
     default:
       return state
   }

@@ -6,7 +6,7 @@ import ShoppingCart from './components/ShoppingCart'
 import {
   Login,
   Signup,
-  Account,
+  AccountUser,
   AllKeyboards,
   SingleKeyboard
 } from './components'
@@ -35,7 +35,7 @@ class Routes extends Component {
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
-            <Route path="/account" component={Account} />
+            <Route path="/account" component={AccountUser} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
