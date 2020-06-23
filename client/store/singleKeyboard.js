@@ -9,6 +9,8 @@ const EDIT_KEYBOARD = 'EDIT_KEYBOARD'
 
 const REMOVE_SINGLE_KEYBOARD = 'REMOVE_SINGLE_KEYBOARD'
 
+const ADD_KEYBOARD = 'ADD_KEYBOARD'
+
 /**
  * INITIAL STATE
  */
@@ -36,6 +38,12 @@ const removeSingleKeyboard = keyboardID => {
   return {
     type: REMOVE_SINGLE_KEYBOARD,
     keyboardID
+  }
+}
+const addKeyboard = keyboard => {
+  return {
+    type: ADD_KEYBOARD,
+    keyboard
   }
 }
 
@@ -72,6 +80,20 @@ export const editOneKeyboard = (keyboardId, keyboard) => async dispatch => {
     console.error(error)
   }
 }
+
+//add keyboard
+export const postkeyboard = newKeyboard => {
+  return async dispatch => {
+    try {
+      const response = await axios.post('/api/keyboards', newKeyboard)
+      const createdkeyboard = response.data
+
+      dispatch(addKeyboard(createdkeyboard))
+    } catch (error) {
+      console.error('Failed to POST')
+    }
+  }
+}
 /**
  * REDUCER
  */
@@ -85,6 +107,8 @@ export default function singleKeyboardReducer(state = initialState, action) {
 
     case REMOVE_SINGLE_KEYBOARD:
       return [...state, initialState.filter(id => id !== action.keyboardID)]
+    case ADD_KEYBOARD:
+      return {...state, keyboard: action.keyboard}
 
     default:
       return state

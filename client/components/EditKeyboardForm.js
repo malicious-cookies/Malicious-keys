@@ -1,6 +1,10 @@
 import React, {useState} from 'react'
 import {connect} from 'react-redux'
-import {editOneKeyboard, deleteKeyboard} from '../store/singleKeyboard'
+import {
+  editOneKeyboard,
+  deleteKeyboard,
+  postkeyboard
+} from '../store/singleKeyboard'
 
 import {makeStyles} from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
@@ -165,6 +169,15 @@ const EditForm = props => {
                   >
                     Delete
                   </Button>
+                  <Button
+                    variant="contained"
+                    color="secondary"
+                    className={classes.button}
+                    startIcon={<DeleteIcon />}
+                    onClick={() => props.postkeyboard(props.newkeyboard)}
+                  >
+                    Add
+                  </Button>
                 </Grid>
 
                 <Grid item xs container direction="column" spacing={2} />
@@ -181,7 +194,8 @@ const mapDispatch = dispatch => {
   return {
     deleteKeyboard: keyboardId => dispatch(deleteKeyboard(keyboardId)),
     editKeyboard: (keyboardId, keyboard) =>
-      dispatch(editOneKeyboard(keyboardId, keyboard))
+      dispatch(editOneKeyboard(keyboardId, keyboard)),
+    postkeyboard: newkeyboard => dispatch(postkeyboard(newkeyboard))
   }
 }
 

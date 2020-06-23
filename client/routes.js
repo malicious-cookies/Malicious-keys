@@ -4,6 +4,7 @@ import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import ShoppingCart from './components/ShoppingCart'
 import EditKeyboard from './components/EditKeyboard'
+import AddKeyboardForm from './components/AddKeyboardForm'
 import {
   Login,
   Signup,
@@ -34,6 +35,7 @@ class Routes extends Component {
         <Route path="/cart" component={ShoppingCart} />
         <Route exact path="/products/:id/edit" component={EditKeyboard} />
         <Route path="/products/:id" component={SingleKeyboard} />
+        <Route path="/newKeyboard" component={AddKeyboardForm} />
 
         {isLoggedIn && (
           <Switch>
