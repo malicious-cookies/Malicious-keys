@@ -20,8 +20,9 @@ class Account extends React.Component {
   render() {
     let user = this.props.user
     !user && history.pushState('/products')
+    console.log(this.props.orders)
     return user.isAdmin ? (
-      <AdminAccountTabs props={this.props} />
+      <AdminAccountTabs orders={this.props.orders} props={this.props} />
     ) : (
       <UserAccountTabs orders={this.props.orders} props={this.props} />
     )

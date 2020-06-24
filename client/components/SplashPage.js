@@ -1,7 +1,7 @@
 import React from 'react'
 import {makeStyles} from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
-import Box from '@material-ui/core/box'
+import Box from '@material-ui/core/Box'
 import chonkyKeys from '../../public/assets/chonkyKeys.jpg'
 import {Link} from 'react-router-dom'
 

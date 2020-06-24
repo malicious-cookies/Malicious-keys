@@ -50,8 +50,8 @@ const AdminAccountTabs = props => {
       <Container>
         {selectedTab === 0 && <PersonalInfo user={props.props.user} />}
         {selectedTab === 1 && <AddKeyboardForm />}
-        {selectedTab === 2 && <OrderList order={props.props} />}
-        {selectedTab === 3 && <h1>AAll users Compoenent here</h1>}
+        {selectedTab === 2 && <h1>Work in progress</h1>}
+        {selectedTab === 3 && <h1>All users Compoenent here</h1>}
         {selectedTab === 4 && <h1>Add Keyboard Compoenent here</h1>}
       </Container>
     </Grid>

@@ -79,7 +79,7 @@ const AddKeyboardForm = props => {
                   <TextField
                     required
                     id="outlined-required"
-                    label="Update Name"
+                    label="Name"
                     value={name}
                     variant="outlined"
                     onChange={e => setName(e.target.value)}
@@ -87,7 +87,7 @@ const AddKeyboardForm = props => {
 
                   <TextField
                     id="outlined-multiline-flexible"
-                    label="Update Price"
+                    label="Price"
                     multiline
                     rowsMax={4}
                     value={price}
@@ -97,7 +97,7 @@ const AddKeyboardForm = props => {
 
                   <TextField
                     id="outlined-multiline-static"
-                    label="Update Description"
+                    label="Description"
                     multiline
                     rows={4}
                     value={description}
@@ -110,7 +110,7 @@ const AddKeyboardForm = props => {
                   />
                   <TextField
                     id="outlined-multiline-static"
-                    label="Update imageURL"
+                    label="imageURL"
                     multiline
                     rows={4}
                     value={imageURL}

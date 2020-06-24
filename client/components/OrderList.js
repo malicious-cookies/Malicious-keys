@@ -104,6 +104,7 @@ function OrdersCell(props) {
 }
 
 const OrderList = props => {
+  console.log("eqwkpeqwkjeklp'qwjekqwjol'ekjqwl;'kej", props)
   let orders = props.orders
   return orders.length ? (
     <Container maxWidth="lg">
