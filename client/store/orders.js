@@ -34,7 +34,7 @@ export const fetchOrders = userId => async dispatch => {
 export const makeNewOrder = (userId, order) => async dispatch => {
   try {
     let {data} = await axios.post(`/api/users/${userId}/orders`, order)
-    dispatch(getAllOrdersUser(data))
+    dispatch(createNewOrder(data))
   } catch (err) {
     console.error(err)
   }

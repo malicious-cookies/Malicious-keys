@@ -88,10 +88,11 @@ router.get(
 router.post('/:userId/orders/', isSelfOrAdmin, async (req, res, next) => {
   try {
     let orderBody = req.body
+    console.log('ORDERRRR===', orderBody)
     orderBody.userId = req.params.userId
     let newOrder = await Order.create(orderBody)
     if (newOrder) {
-      res.status(200).json(order)
+      res.status(200).json(newOrder)
     } else {
       res.sendStatus(404)
     }

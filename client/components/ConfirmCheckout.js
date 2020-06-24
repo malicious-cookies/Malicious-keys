@@ -1,5 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import {makeNewOrder} from '../store/orders'
+import {connect} from 'react-redux'
 
 import {withStyles, makeStyles} from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
@@ -51,7 +53,7 @@ const DialogTitle = withStyles(styles)(props => {
   const {children, classes, onClose, ...other} = props
   return (
     <MuiDialogTitle disableTypography className={classes.root} {...other}>
-      <Typography variant="h6">{children}</Typography>
+      <Typography variant="subtitle2">{children}</Typography>
       {onClose ? (
         <IconButton
           aria-label="close"
@@ -79,6 +81,9 @@ const DialogActions = withStyles(theme => ({
 }))(MuiDialogActions)
 
 const ConfirmationCheckout = props => {
+  console.log('CONFORMAITION HECKEKC===', props)
+  const classes = useStyles()
+
   const user = props.user.name
   const userEmail = props.user.email
   const userAddress = props.user.address
@@ -89,12 +94,14 @@ const ConfirmationCheckout = props => {
     .reduce((a, b) => a + b, 0)
   const totalCost = subTotal + subTotal * 0.087
 
-  console.log('PROOOOOPPPPPS===', props)
-  console.log(totalCost)
-  console.log(subTotal)
-  console.log(user)
-  console.log(userEmail)
-  const classes = useStyles()
+  const order = {
+    RecipientName: user,
+    RecipientEmail: userEmail,
+    status: 'processing',
+    items: props.order,
+    userId: props.user.id
+  }
+
   const [open, setOpen] = React.useState(false)
 
   const handleClickOpen = () => {
@@ -198,7 +205,13 @@ const ConfirmationCheckout = props => {
 
         <DialogActions>
           <Link to="/products">
-            <Button autoFocus onClick={handleClose} color="primary">
+            <Button
+              autoFocus
+              onClick={() =>
+                props.createOrder(props.user.id, order) && handleClose
+              }
+              color="primary"
+            >
               Continue Shopping
             </Button>
           </Link>
@@ -208,4 +221,12 @@ const ConfirmationCheckout = props => {
   )
 }
 
-export default ConfirmationCheckout
+const mapDispatch = dispatch => {
+  return {
+    createOrder(userId, order) {
+      dispatch(makeNewOrder(userId, order))
+    }
+  }
+}
+
+export default connect(null, mapDispatch)(ConfirmationCheckout)
