@@ -52,9 +52,11 @@ export const fetchSingleKeyboard = keyboardID => async dispatch => {
   }
 }
 export const deleteKeyboard = keyboardID => async dispatch => {
+  console.log('HERE', keyboardID)
   try {
     await axios.delete(`/api/keyboards/${keyboardID}`)
     dispatch(removeSingleKeyboard(keyboardID))
+    history.push(`/products`)
   } catch (error) {
     console.error('Failed to DELETE')
   }

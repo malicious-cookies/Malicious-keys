@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import {connect} from 'react-redux'
-import {editOneKeyboard} from '../store/singleKeyboard'
+import {editOneKeyboard, deleteKeyboard} from '../store/singleKeyboard'
 
 import {makeStyles} from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
@@ -64,7 +64,7 @@ const EditForm = props => {
 
   const classes = useStyles()
   const keyboardName = props.keyboard.name
-  console.log(props, 'PPROEOOW')
+  console.log(props.keyboard.id, 'PPROEOOW')
 
   return (
     <div className={classes.root}>
@@ -161,6 +161,7 @@ const EditForm = props => {
                     color="secondary"
                     className={classes.button}
                     startIcon={<DeleteIcon />}
+                    onClick={() => props.deleteKeyboard(props.keyboard.id)}
                   >
                     Delete
                   </Button>
@@ -178,7 +179,7 @@ const EditForm = props => {
 
 const mapDispatch = dispatch => {
   return {
-    deleteKeyboard: keyboardId => dispatch(keyboardId),
+    deleteKeyboard: keyboardId => dispatch(deleteKeyboard(keyboardId)),
     editKeyboard: (keyboardId, keyboard) =>
       dispatch(editOneKeyboard(keyboardId, keyboard))
   }
