@@ -53,27 +53,14 @@ export default function keyboardView(props) {
               />
             </Grid>
             <Grid item className={classes.grid} xs={6}>
-              <Typography variant="h3" color="textPrimary" gutterBottom>
+              <Typography variant="h4" color="textPrimary" gutterBottom>
                 {props.keyboard.name}
               </Typography>
-              <Typography variant="h5" color="textPrimary" gutterBottom>
+              <Typography variant="h6" color="textPrimary" gutterBottom>
                 ${props.keyboard.price}
               </Typography>
-
-              <ExpansionPanel className={classes.expansion}>
-                <ExpansionPanelSummary
-                  expandIcon={<ExpandMoreIcon />}
-                  aria-controls="panel1a-content"
-                  id="panel1a-header"
-                >
-                  <Typography className={classes.heading}>
-                    Description
-                  </Typography>
-                </ExpansionPanelSummary>
-                <ExpansionPanelDetails>
-                  <Typography>{props.keyboard.description}</Typography>
-                </ExpansionPanelDetails>
-              </ExpansionPanel>
+              <Typography>{props.keyboard.description}</Typography>
+              <br />
               <Tooltip title="ADD TO CART">
                 <Button variant="contained" size="small" color="secondary">
                   ADD TO <AddShoppingCartIcon />

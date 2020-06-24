@@ -23,6 +23,9 @@ export default createMuiTheme({
     }
   },
   typography: {
+    fontFamily: 'Lucida Console, Courier, monospace',
+
+    fontWeight: 100,
     subtitle1: {
       fontWeight: 100
     }

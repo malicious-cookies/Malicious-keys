@@ -30,13 +30,13 @@ const useStyles = makeStyles(theme => ({
     paddingTop: '56.25%' // 16:9
   },
   head: {
-    backgroundColor: '#bc658d'
+    backgroundColor: '	#bfddb6'
   },
   whiteColor: {
-    color: theme.palette.common.white
+    color: '#ffffff'
   },
   footer: {
-    backgroundColor: '#f9d89c',
+    backgroundColor: '#fffdf1',
     padding: '10'
   }
 }))

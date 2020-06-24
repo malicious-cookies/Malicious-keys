@@ -54,6 +54,10 @@ const useStyles = makeStyles(theme => ({
   icon: {
     height: '2em',
     width: '2em'
+  },
+  checkout: {
+    backgroundColor: '#86bb3d',
+    color: '#fffff2'
   }
 }))
 
@@ -133,7 +137,12 @@ const ConfirmationCheckout = props => {
 
   return (
     <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+      <Button
+        variant="contained"
+        className={classes.checkout}
+        onClick={handleClickOpen}
+        disableElevation
+      >
         Check Out
       </Button>
       <Dialog
@@ -234,7 +243,7 @@ const ConfirmationCheckout = props => {
 
         <DialogActions>
           <Link to="/products">
-            <Button autoFocus onClick={handleSubmit} color="primary">
+            <Button color="secondary" autoFocus onClick={handleSubmit}>
               Continue Shopping
             </Button>
           </Link>
