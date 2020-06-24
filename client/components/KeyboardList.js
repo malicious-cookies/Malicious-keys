@@ -74,51 +74,33 @@ export default function KeyboardList(props) {
               </Typography>
               <Divider />
               <CardActions className={classes.cardActions}>
-                {props.isAdmin === true ? (
-                  <div>
-                    <Link to={`/products/${keyboard.id}`}>
-                      <Tooltip title="MORE DETAILS" arrow>
-                        <Button
-                          variant="contained"
-                          color="primary"
-                          size="small"
-                          disableElevation
-                        >
-                          View
-                        </Button>
-                        {/* condition if on admin account */}
-                      </Tooltip>
-                    </Link>
-
-                    <Link to={`/products/${keyboard.id}/edit`}>
-                      <Tooltip title="Edit" arrow>
-                        <Button
-                          variant="contained"
-                          color="primary"
-                          size="small"
-                          disableElevation
-                        >
-                          Edit
-                        </Button>
-                        {/* condition if on admin account */}
-                      </Tooltip>
-                    </Link>
-                  </div>
-                ) : (
-                  <Link to={`/products/${keyboard.id}`}>
-                    <Tooltip title="MORE DETAILS" arrow>
+                <Link to={`/products/${keyboard.id}`}>
+                  <Tooltip title="MORE DETAILS" arrow>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      size="small"
+                      disableElevation
+                    >
+                      View
+                    </Button>
+                  </Tooltip>
+                </Link>
+                <Divider orientation="vertical" flexItem />
+                {props.isAdmin ? (
+                  <Link to={`/products/${keyboard.id}/edit`}>
+                    <Tooltip title="Edit" arrow>
                       <Button
                         variant="contained"
                         color="primary"
                         size="small"
                         disableElevation
                       >
-                        View
+                        Edit
                       </Button>
-                      {/* condition if on admin account */}
                     </Tooltip>
                   </Link>
-                )}
+                ) : null}
 
                 <Divider orientation="vertical" flexItem />
                 <Tooltip title="ADD TO CART" arrow>
