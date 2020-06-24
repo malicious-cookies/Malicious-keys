@@ -10,15 +10,18 @@ const UserAccountTabs = props => {
   let page = pageURL[pageURL.length - 1]
 
   const tabNameToIndex = {
-    0: 'orders',
-    1: 'settings'
+    0: 'me',
+    1: 'orders',
+    2: 'settings'
   }
 
   const indexToTabName = {
-    orders: 0,
-    settings: 1
+    me: 0,
+    orders: 1,
+    settings: 2
   }
 
+  page = indexToTabName[page] ? page : (page = 'me')
   const [selectedTab, setSelectedTab] = React.useState(indexToTabName[page])
 
   const handleChange = (event, newValue) => {
