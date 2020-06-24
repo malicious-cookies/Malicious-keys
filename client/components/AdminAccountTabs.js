@@ -44,7 +44,7 @@ const AdminAccountTabs = props => {
         <Tab label="Add Keyboard" />
         <Tab label="All Orders" />
         <Tab label="All Users" />
-        <Tab label="Finances" />
+        <Tab label="All Keyboards" />
       </Tabs>
 
       <Container>
@@ -52,7 +52,7 @@ const AdminAccountTabs = props => {
         {selectedTab === 1 && <AddKeyboardForm />}
         {selectedTab === 2 && <h1>Work in progress</h1>}
         {selectedTab === 3 && <h1>All users Compoenent here</h1>}
-        {selectedTab === 4 && <h1>Add Keyboard Compoenent here</h1>}
+        {selectedTab === 4 && <h1>All Keyboards list</h1>}
       </Container>
     </Grid>
   )
