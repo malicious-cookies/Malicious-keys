@@ -88,7 +88,7 @@ router.get(
 router.post('/:userId/orders/', isSelfOrAdmin, async (req, res, next) => {
   try {
     let orderBody = req.body
-    orderBody.userId = req.params.id
+    orderBody.userId = req.params.userId
     let newOrder = await Order.create(orderBody)
     if (newOrder) {
       res.status(200).json(order)

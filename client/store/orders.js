@@ -24,8 +24,7 @@ const createNewOrder = order => ({type: CREATE_NEW_ORDER, order})
 export const fetchOrders = userId => async dispatch => {
   try {
     const orders = await axios.get(`/api/users/${userId}/orders`)
-    console.log('elwjeokjqekjqekjqwlekjqwklejqwkljeqwkljeqwjl;', orders)
-
+    console.log(orders.data)
     dispatch(getUserOrders(orders.data))
   } catch (err) {
     console.error(err)
@@ -34,7 +33,7 @@ export const fetchOrders = userId => async dispatch => {
 
 export const makeNewOrder = (userId, order) => async dispatch => {
   try {
-    let {data} = axios.post(`/api/users/${userId}/orders`, order)
+    let {data} = await axios.post(`/api/users/${userId}/orders`, order)
     dispatch(getAllOrdersUser(data))
   } catch (err) {
     console.error(err)

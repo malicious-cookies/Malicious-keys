@@ -4,7 +4,7 @@
  * having to figure out which file they belong to!
  */
 export {default as Navbar} from './navbar'
-export {default as AccountUser} from './AccountUser'
+export {default as Account} from './Account'
 export {default as AllKeyboards} from './AllKeyboards'
 export {default as SingleKeyboard} from './SingleKeyboard'
 export {default as OrderList} from './OrderList'

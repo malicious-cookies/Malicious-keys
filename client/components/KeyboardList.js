@@ -54,9 +54,12 @@ export default function KeyboardList(props) {
               <CardContent className={classes.cardContent}>
                 <Grid container alignItems="center">
                   <Typography gutterBottom variant="h6">
-                    {keyboard.name.length < 20
+                    {keyboard.name.split(' ').length <= 3
                       ? keyboard.name
-                      : keyboard.name.slice(0, 20) + '...'}
+                      : keyboard.name
+                          .split(' ')
+                          .slice(0, 3)
+                          .join(' ')}
                   </Typography>
                 </Grid>
                 <Typography>
