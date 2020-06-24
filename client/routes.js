@@ -37,7 +37,7 @@ class Routes extends Component {
         <Route path="/checkout" component={ConfirmationCheckout} />
         <Route exact path="/products/:id/edit" component={EditKeyboard} />
         <Route path="/products/:id" component={SingleKeyboard} />
-        <Route path="/home" component={SplashPage} />
+        <Route path="/" component={SplashPage} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
@@ -45,7 +45,7 @@ class Routes extends Component {
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
-        <Route component={AllKeyboards} />
+        <Route component={SplashPage} />
       </Switch>
     )
   }

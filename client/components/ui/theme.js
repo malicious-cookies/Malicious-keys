@@ -1,9 +1,9 @@
 import {createMuiTheme} from '@material-ui/core/styles'
 import {common} from '@material-ui/core/colors'
 
-let oceanGreen = `#58b4ae`
+let oceanGreen = `#e1fff5`
 let dangerRed = `#f40552`
-let lightYellow = '#ffe277'
+let lightYellow = '#fffeb3'
 
 export default createMuiTheme({
   palette: {
