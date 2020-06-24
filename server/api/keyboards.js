@@ -54,7 +54,7 @@ router.put('/:keyboardId', isAdmin, async (req, res, next) => {
 })
 
 //Create keyboard
-router.post('/:keyboardId', isAdmin, async (req, res, next) => {
+router.post('/', isAdmin, async (req, res, next) => {
   try {
     const newKeyboard = await Keyboard.create(req.body)
     if (newKeyboard) {
