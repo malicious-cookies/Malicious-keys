@@ -42,6 +42,7 @@ export default function keyboardsReducer(state = initialState, action) {
   switch (action.type) {
     case 'GET_ALL_KEYBOARDS':
       return {...state, allKeyboards: action.keyboards}
+
     default:
       return state
   }

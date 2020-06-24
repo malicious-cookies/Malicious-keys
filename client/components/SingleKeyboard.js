@@ -17,7 +17,6 @@ class SingleKeyboard extends React.Component {
 }
 
 const mapState = state => {
-  console.log(state)
   return {
     keyboard: state.singleKeyboard.keyboard
   }

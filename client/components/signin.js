@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {auth} from '../store/user'
+import {auth, me} from '../store/user'
 
 import Avatar from '@material-ui/core/Avatar'
 import Button from '@material-ui/core/Button'
@@ -104,6 +104,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       const password = evt.target.password.value
 
       dispatch(auth(email, password, method))
+      dispatch(me())
     }
   }
 }
