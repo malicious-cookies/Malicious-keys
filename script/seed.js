@@ -1,47 +1,3 @@
-// 'use strict'
-
-// const db = require('../server/db')
-// const {User} = require('../server/db/models')
-
-// async function seed() {
-//   await db.sync({force: true})
-//   console.log('db synced!')
-
-//   const users = await Promise.all([
-//     User.create({email: 'cody@email.com', password: '123'}),
-//     User.create({email: 'murphy@email.com', password: '123'})
-//   ])
-
-//   console.log(`seeded ${users.length} users`)
-//   console.log(`seeded successfully`)
-// }
-
-// // We've separated the `seed` function from the `runSeed` function.
-// // This way we can isolate the error handling and exit trapping.
-// // The `seed` function is concerned only with modifying the database.
-// async function runSeed() {
-//   console.log('seeding...')
-//   try {
-//     await seed()
-//   } catch (err) {
-//     console.error(err)
-//     process.exitCode = 1
-//   } finally {
-//     console.log('closing db connection')
-//     await db.close()
-//     console.log('db connection closed')
-//   }
-// }
-
-// // Execute the `seed` function, IF we ran this module directly (`node seed`).
-// // `Async` functions always return a promise, so we can use `catch` to handle
-// // any errors that might occur inside of `seed`.
-// if (module === require.main) {
-//   runSeed()
-// }
-
-// // we export the seed function for testing purposes (see `./seed.spec.js`)
-// module.exports = seed
 const db = require('../server/db')
 const {User, Keyboard, Order} = require('../server/db/models')
 
@@ -56,10 +12,11 @@ const seedOrders = [
         price: 80,
         description: `Vortex's newest 75% keyboard, the 83-key Race 3! Do you need dedicated arrow keys that your 60% doesn't provide, but don't want the size of a TKL? A 75% may be just for you! Most of the keys are in the "normal" spot, so there's nearly no learning curve for this keyboard.`,
         imageURL:
-          'https://mechanicalkeyboards.com/shop/images/products/large_VTG83MSLV_main.jpg'
+          'https://mechanicalkeyboards.com/shop/images/products/large_VTG83MSLV_main.jpg',
+        quantity: 1
       }
     ],
-    userId: 3
+    userId: 1
   },
   {
     RecipientName: 'Pizza guy',
@@ -69,18 +26,19 @@ const seedOrders = [
       {
         name:
           'Tt eSPORTS Challenger Illuminated Gaming Keyboard, Black (KB-CHL002USB)',
-        quantity: 10,
         price: 110,
         description: `Comprehensive 104 gaming keys layout, each key is featured with backlight design to enhance gaming atmosphere
       On-board 32kb memory for 6 macro keys in 3 game profiles, the Illuminated edition
       The Illuminated edition is rubber-coated textured, creates greater key-press control over your game`,
-        imageURL: `https://images-na.ssl-images-amazon.com/images/I/81vLwoIQqIL._AC_SL1500_.jpg`
+        imageURL: `https://images-na.ssl-images-amazon.com/images/I/81vLwoIQqIL._AC_SL1500_.jpg`,
+        quantity: 2
       },
       {
         name: 'Ducky One Pink / White Dye Sub PBT Mechanical Keyboard',
         price: 110,
         description: `A cute qwerty keyboard`,
-        imageURL: `https://mechanicalkeyboards.com/shop/images/products/large_DKON1608-USPHZWB4_main.jpg`
+        imageURL: `https://mechanicalkeyboards.com/shop/images/products/large_DKON1608-USPHZWB4_main.jpg`,
+        quantity: 4
       }
     ],
     userId: 2
@@ -100,7 +58,8 @@ const seedOrders = [
                   Adopt anti-ghost full-key no-rush design, no matter how fast the action in the game, press at the same time, respond to the trigger at the same time, refuse the key position conflict, feel the pleasure brought by the game!
                   104-key macro programming can be customized, the game is more fun and the performance is stronger.`,
         imageURL:
-          'https://images-na.ssl-images-amazon.com/images/I/61nnfNhNYpL._AC_SL1000_.jpg'
+          'https://images-na.ssl-images-amazon.com/images/I/61nnfNhNYpL._AC_SL1000_.jpg',
+        quantity: 5
       },
       {
         name:
@@ -112,11 +71,13 @@ const seedOrders = [
                     8MB profile storage with hardware macro and lighting playback allow access to up to three stored profiles on the go, independent of external software
                     Per key dynamic multi color RGB backlighting offers near unlimited color customization and control. HID keyboard report rate 1000Hz
                     CORSAIR iCUE software enables vivid dynamic lighting control, sophisticated macro programming and full system lighting synchronization across compatible CORSAIR peripherals, coolers, fans and more`,
-        imageURL: `https://images-na.ssl-images-amazon.com/images/I/71TmErpb3bL._AC_SL1500_.jpg`
+        imageURL: `https://images-na.ssl-images-amazon.com/images/I/71TmErpb3bL._AC_SL1500_.jpg`,
+        quantity: 3
       }
     ],
-    userId: 2
+    userId: 3
   },
+
   {
     RecipientName: 'Pizza guy',
     RecipientEmail: 'pizza@gmail.com',
@@ -127,16 +88,18 @@ const seedOrders = [
         price: 80,
         description: `Vortex's newest 75% keyboard, the 83-key Race 3! Do you need dedicated arrow keys that your 60% doesn't provide, but don't want the size of a TKL? A 75% may be just for you! Most of the keys are in the "normal" spot, so there's nearly no learning curve for this keyboard.`,
         imageURL:
-          'https://mechanicalkeyboards.com/shop/images/products/large_VTG83MSLV_main.jpg'
+          'https://mechanicalkeyboards.com/shop/images/products/large_VTG83MSLV_main.jpg',
+        quantity: 10
       },
       {
         name: 'Ducky One 2 RGB TKL RGB LED Double Shot PBT Mechanical Keyboard',
         price: 120,
         description: `Includes either Year of the Pig or 1 of 2 Year of the Rat spacebars`,
-        imageURL: `https://mechanicalkeyboards.com/shop/images/products/large_4284_large_DKON1787ST-USPDAZT1_main.jpg`
+        imageURL: `https://mechanicalkeyboards.com/shop/images/products/large_4284_large_DKON1787ST-USPDAZT1_main.jpg`,
+        quantity: 12
       }
     ],
-    userId: 1
+    userId: 2
   }
 ]
 

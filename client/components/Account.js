@@ -1,9 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {Redirect} from 'react-router-dom'
-import AllKeyboards from './AllKeyboards'
-
+import {fetchOrders} from '../store/orders'
+import UserAccountTabs from './UserAccountTabs'
 /**
  * COMPONENT
  */
@@ -12,21 +11,17 @@ class Account extends React.Component {
     super(props)
   }
 
+  componentDidMount() {
+    let userId = this.props.user.id
+    this.props.fetchOrders(userId)
+    console.log(this.props.match)
+  }
+
   render() {
     let user = this.props.user
-    if (!user.id) {
-      return <Redirect to="/" />
-    }
+    !user && history.pushState('/products')
 
-    return (
-      <div>
-        <h3>Welcome {user.email}</h3>
-        <h3>
-          This component will render past orders. Setting pages and Personal
-          info page.
-        </h3>
-      </div>
-    )
+    return <UserAccountTabs orders={this.props.orders} props={this.props} />
   }
 }
 
@@ -36,15 +31,14 @@ class Account extends React.Component {
 const mapState = state => {
   return {
     user: state.user,
-    email: state.user.email
+    orders: state.orders
   }
 }
 
-export default connect(mapState)(Account)
-
-/**
- * PROP TYPES
- */
-Account.propTypes = {
-  email: PropTypes.string
+const mapDispatch = dispatch => {
+  return {
+    fetchOrders: userId => dispatch(fetchOrders(userId))
+  }
 }
+
+export default connect(mapState, mapDispatch)(Account)
