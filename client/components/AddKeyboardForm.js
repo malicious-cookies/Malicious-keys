@@ -101,7 +101,6 @@ const AddKeyboardForm = props => {
                     multiline
                     rows={4}
                     value={description}
-                    defaultValue=""
                     variant="outlined"
                     onChange={e =>
                       e
@@ -115,7 +114,6 @@ const AddKeyboardForm = props => {
                     multiline
                     rows={4}
                     value={imageURL}
-                    defaultValue=""
                     variant="outlined"
                     onChange={e => setImageURL(e.target.value)}
                   />

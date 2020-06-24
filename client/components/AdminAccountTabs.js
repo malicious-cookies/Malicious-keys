@@ -3,9 +3,11 @@ import {Tabs, Tab, Container} from '@material-ui/core'
 import history from '../history'
 import Grid from '@material-ui/core/Grid'
 import AddKeyboardForm from '../components/AddKeyboardForm'
+import OrderList from '../components/OrderList'
 import PersonalInfo from './PersonalInfo'
 
 const AdminAccountTabs = props => {
+  console.log('THIS IS PROOOOOPS', props.props)
   let pathname = props.props.location.pathname
   let pageURL = pathname.split('/')
   let page = pageURL[pageURL.length - 1]
@@ -48,7 +50,7 @@ const AdminAccountTabs = props => {
       <Container>
         {selectedTab === 0 && <PersonalInfo user={props.props.user} />}
         {selectedTab === 1 && <AddKeyboardForm />}
-        {selectedTab === 2 && <h1>All orders Compoenent here</h1>}
+        {selectedTab === 2 && <OrderList order={props.props} />}
         {selectedTab === 3 && <h1>AAll users Compoenent here</h1>}
         {selectedTab === 4 && <h1>Add Keyboard Compoenent here</h1>}
       </Container>
