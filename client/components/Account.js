@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {fetchOrders} from '../store/orders'
 import UserAccountTabs from './UserAccountTabs'
+import AdminAccounTabs from './AdminAccountTabs'
 /**
  * COMPONENT
  */
@@ -20,8 +21,11 @@ class Account extends React.Component {
   render() {
     let user = this.props.user
     !user && history.pushState('/products')
-
-    return <UserAccountTabs orders={this.props.orders} props={this.props} />
+    return user.isAdmin ? (
+      <AdminAccounTabs props={this.props} />
+    ) : (
+      <UserAccountTabs orders={this.props.orders} props={this.props} />
+    )
   }
 }
 
