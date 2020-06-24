@@ -1,6 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import {makeNewOrder} from '../store/orders'
+import {clearCart} from '../store/cart'
 import {connect} from 'react-redux'
 
 import {withStyles, makeStyles} from '@material-ui/core/styles'
@@ -31,21 +32,28 @@ const styles = theme => ({
 const useStyles = makeStyles(theme => ({
   emailFont: {
     fontStyle: 'italic',
-    fontWeight: 100,
+    fontWeight: 400,
     fontSize: '10px'
   },
   orderFont: {
-    fontWeight: 200,
-    marginTop: '2rem'
+    fontWeight: 100,
+    display: 'block'
   },
   orderTitles: {
     fontWeight: 800,
     fontSize: 17
   },
   orderInformation: {
-    fontWeight: 200,
+    fontWeight: 400,
     fontSize: 14,
     fontStyle: 'italic'
+  },
+  headerContainer: {
+    padding: '20px 0'
+  },
+  icon: {
+    height: '2em',
+    width: '2em'
   }
 }))
 
@@ -53,7 +61,7 @@ const DialogTitle = withStyles(styles)(props => {
   const {children, classes, onClose, ...other} = props
   return (
     <MuiDialogTitle disableTypography className={classes.root} {...other}>
-      <Typography variant="subtitle2">{children}</Typography>
+      <Typography variant="h4">{children}</Typography>
       {onClose ? (
         <IconButton
           aria-label="close"
@@ -81,7 +89,7 @@ const DialogActions = withStyles(theme => ({
 }))(MuiDialogActions)
 
 const ConfirmationCheckout = props => {
-  console.log('CONFORMAITION HECKEKC===', props)
+  console.log('CONFORMAITION HECKEKC===', props.clearCart)
   const classes = useStyles()
 
   const user = props.user.name
@@ -111,6 +119,18 @@ const ConfirmationCheckout = props => {
     setOpen(false)
   }
 
+  const handleSubmit = () => {
+    props.clearCart()
+    props.createOrder(props.user.id, order)
+    handleClose()
+  }
+
+  // <div class="Dialog">
+  //   <h6  class="title">Order Summary</h6>
+  //   <avg>Icon</avg>
+  //   <p>Hooogjriege</p>
+  // </div>
+
   return (
     <div>
       <Button variant="outlined" color="primary" onClick={handleClickOpen}>
@@ -121,26 +141,31 @@ const ConfirmationCheckout = props => {
         aria-labelledby="customized-dialog-title"
         open={open}
       >
-        <DialogTitle
-          style={{textAlign: 'center'}}
-          id="customized-dialog-title"
-          onClose={handleClose}
-        >
-          <CheckCircleIcon />
-          <br />
-          Order Summary<br />
-          <Typography variant="subtitle1">We've received your order</Typography>
-          <Typography className={classes.emailFont} variant="body2">
+        <Grid className={classes.headerContainer} style={{textAlign: 'center'}}>
+          <CheckCircleIcon className={classes.icon} />
+          <DialogTitle
+            style={{textAlign: 'center'}}
+            id="customized-dialog-title"
+            onClose={handleClose}
+          >
+            Order Summary
+          </DialogTitle>
+          <Typography>We've received your order</Typography>
+          <Typography className={classes.emailFont}>
             A copy of your receipt has been sent to {userEmail}
           </Typography>
-        </DialogTitle>
+        </Grid>
 
         <DialogContent dividers>
           <Grid container spacing={3}>
             <Grid item xs={6}>
               <Typography className={classes.orderTitles} gutterBottom>
                 Delivery details:
-                <Typography variant="subtitle1" gutterBottom>
+                <Typography
+                  className={classes.orderFont}
+                  component="span"
+                  gutterBottom
+                >
                   {userAddress}
                 </Typography>
               </Typography>
@@ -152,7 +177,11 @@ const ConfirmationCheckout = props => {
                 gutterBottom
               >
                 Payment method
-                <Typography variant="subtitle1" gutterBottom>
+                <Typography
+                  className={classes.orderFont}
+                  component="span"
+                  gutterBottom
+                >
                   Malicious Express
                 </Typography>
               </Typography>
@@ -205,13 +234,7 @@ const ConfirmationCheckout = props => {
 
         <DialogActions>
           <Link to="/products">
-            <Button
-              autoFocus
-              onClick={() =>
-                props.createOrder(props.user.id, order) && handleClose
-              }
-              color="primary"
-            >
+            <Button autoFocus onClick={handleSubmit} color="primary">
               Continue Shopping
             </Button>
           </Link>
@@ -225,6 +248,9 @@ const mapDispatch = dispatch => {
   return {
     createOrder(userId, order) {
       dispatch(makeNewOrder(userId, order))
+    },
+    clearCart() {
+      dispatch(clearCart())
     }
   }
 }

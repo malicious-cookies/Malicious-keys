@@ -79,6 +79,9 @@ export default function(state = currentCart, action) {
       history.push('/cart')
       return keyboards
 
+    case CLEAR_CART:
+      localStorage.setItem('cart', [])
+      return []
     default:
       return state
   }
