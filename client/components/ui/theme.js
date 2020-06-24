@@ -13,7 +13,7 @@ export default createMuiTheme({
       lightYellow: `${lightYellow}`
     },
     primary: {
-      main: `${oceanGreen}`
+      main: `#efefef`
     },
     secondary: {
       main: `${dangerRed}`
