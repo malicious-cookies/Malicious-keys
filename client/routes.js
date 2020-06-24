@@ -4,6 +4,7 @@ import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import ShoppingCart from './components/ShoppingCart'
 import EditKeyboard from './components/EditKeyboard'
+import ConfirmationCheckout from './components/ConfirmCheckout'
 import {
   Login,
   Signup,
@@ -32,6 +33,7 @@ class Routes extends Component {
         <Route path="/signup" component={Signup} />
         <Route exact path="/products" component={AllKeyboards} />
         <Route path="/cart" component={ShoppingCart} />
+        <Route path="/checkout" component={ConfirmationCheckout} />
         <Route exact path="/products/:id/edit" component={EditKeyboard} />
         <Route path="/products/:id" component={SingleKeyboard} />
 

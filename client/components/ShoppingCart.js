@@ -2,6 +2,8 @@ import React from 'react'
 import {addToCart, removeFromCart, deleteFromCart} from '../store'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
+import ConfirmCheckout from './ConfirmCheckout'
+
 import {makeStyles} from '@material-ui/core/styles'
 import CardMedia from '@material-ui/core/CardMedia'
 import Table from '@material-ui/core/Table'
@@ -21,6 +23,7 @@ import Tooltip from '@material-ui/core/Tooltip'
 import Grid from '@material-ui/core/Grid'
 import ReceiptIcon from '@material-ui/icons/Receipt'
 import ShoppingCartRoundedIcon from '@material-ui/icons/ShoppingCartRounded'
+import ConfirmationCheckout from './ConfirmCheckout'
 
 const useStyles = makeStyles(theme => ({
   media: {
@@ -40,6 +43,10 @@ const useStyles = makeStyles(theme => ({
 const ShoppingCart = props => {
   const classes = useStyles()
   let total = 0
+
+  // console.log('PROPPPPSS SHOPPPIGNGNIGNIGNCART',props)
+  // console.log('IS THERE A USER', props)
+
   return (
     <Container>
       <Grid container item xs={12} justify="center" alignItems="center">
@@ -154,10 +161,17 @@ const ShoppingCart = props => {
                         <h3>${total} </h3>
                       </Grid>
                       <Grid item xs={2}>
-                        <Button variant="contained" color="primary">
-                          Checkout
-                          <ReceiptIcon />
-                        </Button>
+                        {/* <Link to='/checkout'>
+                          <Button variant="contained" color="primary" onClick={() => <ConfirmCheckout cart={props.cart} />}>
+                            Checkout
+                            <ReceiptIcon />
+                          </Button>
+                        </Link> */}
+
+                        <ConfirmationCheckout
+                          order={props.cart}
+                          user={props.user}
+                        />
                       </Grid>
                     </>
                   ) : (
@@ -181,7 +195,8 @@ const ShoppingCart = props => {
 
 const mapState = state => {
   return {
-    cart: state.cart
+    cart: state.cart,
+    user: state.user
   }
 }
 
