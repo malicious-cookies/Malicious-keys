@@ -2,6 +2,7 @@ import React from 'react'
 import {Tabs, Tab, Container} from '@material-ui/core'
 import history from '../history'
 import Grid from '@material-ui/core/Grid'
+import AddKeyboardForm from '../components/AddKeyboardForm'
 import PersonalInfo from './PersonalInfo'
 
 const AdminAccountTabs = props => {
@@ -33,7 +34,7 @@ const AdminAccountTabs = props => {
     history.push(`/account/${tabNameToIndex[newValue]}`)
     setSelectedTab(newValue)
   }
-
+  //
   return (
     <Grid container spacing={3}>
       <Tabs orientation="vertical" value={selectedTab} onChange={handleChange}>
@@ -46,7 +47,7 @@ const AdminAccountTabs = props => {
 
       <Container>
         {selectedTab === 0 && <PersonalInfo user={props.props.user} />}
-        {selectedTab === 1 && <h1>Add Keyboard Compoenent here</h1>}
+        {selectedTab === 1 && <AddKeyboardForm />}
         {selectedTab === 2 && <h1>All orders Compoenent here</h1>}
         {selectedTab === 3 && <h1>AAll users Compoenent here</h1>}
         {selectedTab === 4 && <h1>Add Keyboard Compoenent here</h1>}
