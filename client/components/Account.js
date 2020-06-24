@@ -15,7 +15,6 @@ class Account extends React.Component {
   componentDidMount() {
     let userId = this.props.user.id
     this.props.fetchOrders(userId)
-    console.log(this.props.match)
   }
 
   render() {

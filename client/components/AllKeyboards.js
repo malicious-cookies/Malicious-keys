@@ -11,7 +11,6 @@ class AllKeyboards extends React.Component {
   }
   componentDidMount() {
     this.props.fetchKeyboards()
-    console.log('ALLTHE PROPS===', this.props)
   }
   render() {
     let keyboards = this.props.keyboards
