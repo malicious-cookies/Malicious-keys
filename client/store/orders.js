@@ -24,7 +24,6 @@ const createNewOrder = order => ({type: CREATE_NEW_ORDER, order})
 export const fetchOrders = userId => async dispatch => {
   try {
     const orders = await axios.get(`/api/users/${userId}/orders`)
-    console.log(orders.data)
     dispatch(getUserOrders(orders.data))
   } catch (err) {
     console.error(err)

@@ -45,9 +45,7 @@ function OrdersCell(props) {
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </TableCell>
-        <TableCell component="th" scope="row" align="center">
-          {order.id}
-        </TableCell>
+        <TableCell>{order.id}</TableCell>
         <TableCell align="center">{order.items.length}</TableCell>
         <TableCell align="center">{order.status}</TableCell>
         <TableCell align="center">${order.subtotal}</TableCell>
@@ -142,7 +140,9 @@ const OrderList = props => {
       </TableContainer>
     </Container>
   ) : (
-    <h4>ejqwjeqw</h4>
+    <Container>
+      <h2>No orders Avaliable</h2>
+    </Container>
   )
 }
 

@@ -2,6 +2,7 @@ import React from 'react'
 import {Tabs, Tab, Container} from '@material-ui/core'
 import history from '../history'
 import Grid from '@material-ui/core/Grid'
+import PersonalInfo from './PersonalInfo'
 
 const AdminAccountTabs = props => {
   let pathname = props.props.location.pathname
@@ -44,7 +45,7 @@ const AdminAccountTabs = props => {
       </Tabs>
 
       <Container>
-        {selectedTab === 0 && <h1>Personal Info</h1>}
+        {selectedTab === 0 && <PersonalInfo user={props.props.user} />}
         {selectedTab === 1 && <h1>Add Keyboard Compoenent here</h1>}
         {selectedTab === 2 && <h1>All orders Compoenent here</h1>}
         {selectedTab === 3 && <h1>AAll users Compoenent here</h1>}

@@ -36,6 +36,7 @@ class Routes extends Component {
         <Route path="/checkout" component={ConfirmationCheckout} />
         <Route exact path="/products/:id/edit" component={EditKeyboard} />
         <Route path="/products/:id" component={SingleKeyboard} />
+        <Route exact path="/" component={Login} />
 
         {isLoggedIn && (
           <Switch>
