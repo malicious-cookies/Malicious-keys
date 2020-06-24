@@ -106,9 +106,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       dispatch(auth(email, password, method))
       dispatch(me())
     }
-    // getUser: user => dispatch(getUser({
-
-    // }))
   }
 }
 

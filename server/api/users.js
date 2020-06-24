@@ -3,73 +3,7 @@ const {User, Order} = require('../db/models')
 const {isLoggedIn, isAdmin, isSelfOrAdmin} = require('./gatekeepers')
 module.exports = router
 
-//get all orders by user
-router.get('/:userId/orders', isSelfOrAdmin, async (req, res, next) => {
-  try {
-    let userId = req.params.userId
-    let orders = await Order.findAll({
-      where: {
-        userId
-      }
-    })
-    if (orders) {
-      res.status(200).json(orders)
-    } else {
-      res.sendStatus(404)
-    }
-  } catch (error) {
-    next(error)
-  }
-})
-
-//get SIGNLE ORDER by USER
-router.get(
-  '/:userId/orders/:orderId',
-  isSelfOrAdmin,
-  async (req, res, next) => {
-    try {
-      let orderId = req.params.orderId
-      let order = await Order.findById(orderId)
-      if (order) {
-        res.status(200).json(order)
-      } else {
-        res.sendStatus(404)
-      }
-    } catch (error) {
-      next(error)
-    }
-  }
-)
-
-//create ORDER by USER
-router.post('/:userId/orders/', isSelfOrAdmin, async (req, res, next) => {
-  try {
-    let newOrder = await Order.create(req.body)
-    if (newOrder) {
-      res.status(200).json(order)
-    } else {
-      res.sendStatus(404)
-    }
-  } catch (error) {
-    next(error)
-  }
-})
-
-//get one user
-router.get('/:userId', isSelfOrAdmin, async (req, res, next) => {
-  try {
-    const user = await User.findByPk(req.param.userId)
-    if (user) {
-      res.status(200).json(user)
-    } else {
-      res.sendStatus(404)
-    }
-  } catch (error) {
-    next(error)
-  }
-})
-
-//get all users
+//GET ALL USERS
 router.get('/', isAdmin, async (req, res, next) => {
   try {
     //get all users without password
@@ -86,7 +20,87 @@ router.get('/', isAdmin, async (req, res, next) => {
   }
 })
 
-//create a new user UNPROTECTED
+//GET SINGLE USER
+router.get('/:userId', isSelfOrAdmin, async (req, res, next) => {
+  try {
+    const user = await User.findOne({
+      where: {
+        id: req.params.userId
+      }
+    })
+    if (user) {
+      res.status(200).json({
+        id: user.id,
+        isAdmin: user.isAdmin,
+        name: user.name,
+        email: user.email
+      })
+    } else {
+      res.sendStatus(404)
+    }
+  } catch (error) {
+    next(error)
+  }
+})
+
+//GET ORDERS BY USER
+router.get('/:userId/orders', isSelfOrAdmin, async (req, res, next) => {
+  try {
+    let orders = await Order.findAll({
+      where: {
+        userId: req.params.userId
+      }
+    })
+    if (orders) {
+      res.json(orders)
+    } else {
+      res.sendStatus(404)
+    }
+  } catch (error) {
+    next(error)
+  }
+})
+
+//GET SIGNLE ORDER by USER
+router.get(
+  '/:userId/orders/:orderId',
+  isSelfOrAdmin,
+  async (req, res, next) => {
+    try {
+      let orderId = req.params.orderId
+      let order = await Order.findOne({
+        where: {
+          orderId
+        }
+      })
+      if (order) {
+        res.status(200).json(order)
+      } else {
+        res.sendStatus(404)
+      }
+    } catch (error) {
+      next(error)
+    }
+  }
+)
+
+//CREATE ORDER by USER
+router.post('/:userId/orders/', isSelfOrAdmin, async (req, res, next) => {
+  try {
+    let orderBody = req.body
+    orderBody.userId = req.params.userId
+    let newOrder = await Order.create(orderBody)
+    if (newOrder) {
+      res.status(200).json(order)
+    } else {
+      res.sendStatus(404)
+    }
+  } catch (error) {
+    next(error)
+  }
+})
+
+//CRATE NEW USER (UNPROTECTED)
 router.post('/', async (req, res, next) => {
   try {
     const createUser = await User.create(req.body)
