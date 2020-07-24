@@ -63,7 +63,7 @@ To-do:
 
 ## Contact
 
-Created by:
+Created by:<br/>
 [Linda Eng](https://www.linkedin.com/in/linda-eng/) <br />
-[Dewin Pena](https://www.linkedin.com/in/nanpena/) <br />
-[Serge Aristes](https://www.linkedin.com/in/claudiasaimbert/)
+[Dewin Pena](https://www.linkedin.com/in/dewinpena/) <br />
+[Serge Aristide Nikiema](https://www.linkedin.com/in/serge-aristide-nikiema/)
